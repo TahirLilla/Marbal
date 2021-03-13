@@ -1,0 +1,30 @@
+﻿<div class="row top-margin">
+    <div class="col-lg-4">
+        @Html.Label("Khewat No")
+        @Html.DropDownList("ID", new SelectList(  ViewBag.Khewats , "ID", "KhewatNo"),"Select", new { @class = "form-control", id = "khewatNo" })
+
+    </div>
+    <div class="col-lg-4">
+        @Html.Label("Hissa")
+        @Html.Label("NILL", new { @class = "form-control", id = "hissa" })
+    </div>
+    <div class="col-lg-4">
+        @Html.Label("Total Owners")
+        @Html.Label("NILL", new { @class = "form-control", id = "totalOwners" })
+    </div>
+</div>
+
+<div class="row top-margin">
+    <div class="col-lg-4">
+        @Html.Label("Owners Hissas")
+        @Html.Label("NILL", new { @class = "form-control", id = "tohissas" })
+    </div>
+    <div class="col-lg-4">
+        @Html.Label("Total Khasra Numberan")
+        @Html.Label("NILL", new { @class = "form-control", id = "tkhasra" })
+    </div>
+    <div class="col-lg-4">
+        @Html.Label("Total Plots")
+        @Html.Label("NILL", new { @class = "form-control", id = "tplots" })
+    </div>
+</div>

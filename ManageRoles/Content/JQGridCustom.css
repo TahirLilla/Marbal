@@ -1,0 +1,15 @@
+﻿.custom-data-grid {
+    text-align: center
+}
+
+
+    /* Table Header*/
+    .custom-data-grid .ui-jqgrid-hbox table tr th .DGTexthide {
+        font-size: 14px;
+    }
+
+
+    /*Table Rows */
+    .custom-data-grid .ui-jqgrid tr.jqgrow td {
+        font-size: 14px;
+    }

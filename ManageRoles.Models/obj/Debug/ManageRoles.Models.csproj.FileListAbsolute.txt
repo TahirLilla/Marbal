@@ -1,0 +1,31 @@
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\ManageRoles.Models.dll.config
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\ManageRoles.Models.dll
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\ManageRoles.Models.pdb
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\System.Web.Mvc.dll
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\System.Web.Mvc.xml
+D:\managerole reposirory\ManageRoles.Models\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\managerole reposirory\ManageRoles.Models\obj\Debug\ManageRoles.Models.csprojAssemblyReference.cache
+D:\managerole reposirory\ManageRoles.Models\obj\Debug\ManageRoles.Models.csproj.CoreCompileInputs.cache
+D:\managerole reposirory\ManageRoles.Models\obj\Debug\ManageRoles.Models.csproj.CopyComplete
+D:\managerole reposirory\ManageRoles.Models\obj\Debug\ManageRoles.Models.dll
+D:\managerole reposirory\ManageRoles.Models\obj\Debug\ManageRoles.Models.pdb
+D:\ManageRoles_latest\ManageRoles.Models\bin\Debug\ManageRoles.Models.dll.config
+D:\ManageRoles_latest\ManageRoles.Models\bin\Debug\ManageRoles.Models.dll
+D:\ManageRoles_latest\ManageRoles.Models\bin\Debug\ManageRoles.Models.pdb
+D:\ManageRoles_latest\ManageRoles.Models\bin\Debug\System.Web.Mvc.dll
+D:\ManageRoles_latest\ManageRoles.Models\bin\Debug\System.Web.Mvc.xml
+D:\ManageRoles_latest\ManageRoles.Models\obj\Debug\ManageRoles.Models.csproj.CoreCompileInputs.cache
+D:\ManageRoles_latest\ManageRoles.Models\obj\Debug\ManageRoles.Models.csproj.CopyComplete
+D:\ManageRoles_latest\ManageRoles.Models\obj\Debug\ManageRoles.Models.dll
+D:\ManageRoles_latest\ManageRoles.Models\obj\Debug\ManageRoles.Models.pdb
+D:\Marbal\ManageRoles.Models\bin\Debug\ManageRoles.Models.dll.config
+D:\Marbal\ManageRoles.Models\bin\Debug\ManageRoles.Models.dll
+D:\Marbal\ManageRoles.Models\bin\Debug\ManageRoles.Models.pdb
+D:\Marbal\ManageRoles.Models\bin\Debug\System.Web.Mvc.dll
+D:\Marbal\ManageRoles.Models\bin\Debug\System.Web.Mvc.xml
+D:\Marbal\ManageRoles.Models\obj\Debug\ManageRoles.Models.csprojAssemblyReference.cache
+D:\Marbal\ManageRoles.Models\obj\Debug\ManageRoles.Models.csproj.CoreCompileInputs.cache
+D:\Marbal\ManageRoles.Models\obj\Debug\ManageRoles.Models.csproj.CopyComplete
+D:\Marbal\ManageRoles.Models\obj\Debug\ManageRoles.Models.dll
+D:\Marbal\ManageRoles.Models\obj\Debug\ManageRoles.Models.pdb

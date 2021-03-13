@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MarbalModelStoreContainer" CdmEntityContainer="MarbalEntities">
+    <EntitySetMapping Name="AmountTypeTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.AmountTypeTbl">
+        <MappingFragment StoreEntitySet="AmountTypeTbl">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.CategoryTbl">
+        <MappingFragment StoreEntitySet="CategoryTbl">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.ExpenseTbl">
+        <MappingFragment StoreEntitySet="ExpenseTbl">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Expense" ColumnName="Expense" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseTypeTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.ExpenseTypeTbl">
+        <MappingFragment StoreEntitySet="ExpenseTypeTbl">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GatePassDetailTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.GatePassDetailTbl">
+        <MappingFragment StoreEntitySet="GatePassDetailTbl">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GatePassTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.GatePassTbl">
+        <MappingFragment StoreEntitySet="GatePassTbl">
+          <ScalarProperty Name="ReciverNumber" ColumnName="ReciverNumber" />
+          <ScalarProperty Name="ReciverName" ColumnName="ReciverName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderBookDetailTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.OrderBookDetailTbl">
+        <MappingFragment StoreEntitySet="OrderBookDetailTbl">
+          <ScalarProperty Name="ItemTotalPrice" ColumnName="ItemTotalPrice" />
+          <ScalarProperty Name="SingleSizePrice" ColumnName="SingleSizePrice" />
+          <ScalarProperty Name="TotalSize" ColumnName="TotalSize" />
+          <ScalarProperty Name="ItemsCount" ColumnName="ItemsCount" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderBookTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.OrderBookTbl">
+        <MappingFragment StoreEntitySet="OrderBookTbl">
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderTransectionTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.OrderTransectionTbl">
+        <MappingFragment StoreEntitySet="OrderTransectionTbl">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="TransactionTpeID" ColumnName="TransactionTpeID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCategoryTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.ProductCategoryTbl">
+        <MappingFragment StoreEntitySet="ProductCategoryTbl">
+          <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.ProductTbl">
+        <MappingFragment StoreEntitySet="ProductTbl">
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecordTruckTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.RecordTruckTbl">
+        <MappingFragment StoreEntitySet="RecordTruckTbl">
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="InAdvancePament" ColumnName="InAdvancePament" />
+          <ScalarProperty Name="TotalSqFeet" ColumnName="TotalSqFeet" />
+          <ScalarProperty Name="WeightExpense" ColumnName="WeightExpense" />
+          <ScalarProperty Name="LabourCost" ColumnName="LabourCost" />
+          <ScalarProperty Name="PerTonRent" ColumnName="PerTonRent" />
+          <ScalarProperty Name="TruckWeight" ColumnName="TruckWeight" />
+          <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+          <ScalarProperty Name="DrivrNumber" ColumnName="DrivrNumber" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.SupplierTbl">
+        <MappingFragment StoreEntitySet="SupplierTbl">
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierTransectionTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.SupplierTransectionTbl">
+        <MappingFragment StoreEntitySet="SupplierTransectionTbl">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SubmitAmount" ColumnName="SubmitAmount" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierTruckTrans">
+      <EntityTypeMapping TypeName="Marbal.Model.SupplierTruckTran">
+        <MappingFragment StoreEntitySet="SupplierTruckTrans">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TruckDetailTbls">
+      <EntityTypeMapping TypeName="Marbal.Model.TruckDetailTbl">
+        <MappingFragment StoreEntitySet="TruckDetailTbl">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Breadth" ColumnName="Breadth" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_CategoriesByProduct">
+      <EntityTypeMapping TypeName="Marbal.Model.vw_CategoriesByProduct">
+        <MappingFragment StoreEntitySet="vw_CategoriesByProduct">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ExpensesTbl">
+      <EntityTypeMapping TypeName="Marbal.Model.vw_ExpensesTbl">
+        <MappingFragment StoreEntitySet="vw_ExpensesTbl">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Expense" ColumnName="Expense" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ProductTbl">
+      <EntityTypeMapping TypeName="Marbal.Model.vw_ProductTbl">
+        <MappingFragment StoreEntitySet="vw_ProductTbl">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_TruckDetailTbl">
+      <EntityTypeMapping TypeName="Marbal.Model.vw_TruckDetailTbl">
+        <MappingFragment StoreEntitySet="vw_TruckDetailTbl">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Breadth" ColumnName="Breadth" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="TruckID" ColumnName="TruckID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_SupplierTransectionTbl_AmountTypeTbl" TypeName="Marbal.Model.FK_SupplierTransectionTbl_AmountTypeTbl" StoreEntitySet="SupplierTransectionTbl">
+      <EndProperty Name="SupplierTransectionTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="AmountTypeTbl">
+        <ScalarProperty Name="ID" ColumnName="AmountType" />
+      </EndProperty>
+      <Condition ColumnName="AmountType" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ProductCategoryTbl_CategoryTbl" TypeName="Marbal.Model.FK_ProductCategoryTbl_CategoryTbl" StoreEntitySet="ProductCategoryTbl">
+      <EndProperty Name="ProductCategoryTbl">
+        <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+      </EndProperty>
+      <EndProperty Name="CategoryTbl">
+        <ScalarProperty Name="ID" ColumnName="CategoryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ExpenseTbl_ExpenseTypeTbl" TypeName="Marbal.Model.FK_ExpenseTbl_ExpenseTypeTbl" StoreEntitySet="ExpenseTbl">
+      <EndProperty Name="ExpenseTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="ExpenseTypeTbl">
+        <ScalarProperty Name="ID" ColumnName="TypeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_GatePassDetailTbl_GatePassTbl" TypeName="Marbal.Model.FK_GatePassDetailTbl_GatePassTbl" StoreEntitySet="GatePassDetailTbl">
+      <EndProperty Name="GatePassDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="GatePassTbl">
+        <ScalarProperty Name="ID" ColumnName="GatePassID" />
+      </EndProperty>
+      <Condition ColumnName="GatePassID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_GatePassDetailTbl_OrderBookDetailTbl1" TypeName="Marbal.Model.FK_GatePassDetailTbl_OrderBookDetailTbl1" StoreEntitySet="GatePassDetailTbl">
+      <EndProperty Name="GatePassDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="OrderBookDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="OrderDetailID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_OrderBookDetailTbl_OrderBookTbl" TypeName="Marbal.Model.FK_OrderBookDetailTbl_OrderBookTbl" StoreEntitySet="OrderBookDetailTbl">
+      <EndProperty Name="OrderBookDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="OrderBookTbl">
+        <ScalarProperty Name="ID" ColumnName="OrderBookID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_OrderBookDetailTbl_ProductCategoryTbl" TypeName="Marbal.Model.FK_OrderBookDetailTbl_ProductCategoryTbl" StoreEntitySet="OrderBookDetailTbl">
+      <EndProperty Name="OrderBookDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="ProductCategoryTbl">
+        <ScalarProperty Name="ProductCatID" ColumnName="ProductId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_OrderTransectionTbl_OrderBookTbl" TypeName="Marbal.Model.FK_OrderTransectionTbl_OrderBookTbl" StoreEntitySet="OrderTransectionTbl">
+      <EndProperty Name="OrderTransectionTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="OrderBookTbl">
+        <ScalarProperty Name="ID" ColumnName="OrderBookID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ProductCategoryTbl_ProductTbl" TypeName="Marbal.Model.FK_ProductCategoryTbl_ProductTbl" StoreEntitySet="ProductCategoryTbl">
+      <EndProperty Name="ProductCategoryTbl">
+        <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+      </EndProperty>
+      <EndProperty Name="ProductTbl">
+        <ScalarProperty Name="ID" ColumnName="ProductID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TruckDetailTbl_ProductCategoryTbl" TypeName="Marbal.Model.FK_TruckDetailTbl_ProductCategoryTbl" StoreEntitySet="TruckDetailTbl">
+      <EndProperty Name="TruckDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="ProductCategoryTbl">
+        <ScalarProperty Name="ProductCatID" ColumnName="ProductID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_RecordTruckTbl_SupplierTbl" TypeName="Marbal.Model.FK_RecordTruckTbl_SupplierTbl" StoreEntitySet="RecordTruckTbl">
+      <EndProperty Name="RecordTruckTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="SupplierTbl">
+        <ScalarProperty Name="ID" ColumnName="SupplierID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_SupplierTruckTrans_RecordTruckTbl" TypeName="Marbal.Model.FK_SupplierTruckTrans_RecordTruckTbl" StoreEntitySet="SupplierTruckTrans">
+      <EndProperty Name="SupplierTruckTran">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="RecordTruckTbl">
+        <ScalarProperty Name="ID" ColumnName="TruckID" />
+      </EndProperty>
+      <Condition ColumnName="TruckID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TruckDetailTbl_RecordTruckTbl" TypeName="Marbal.Model.FK_TruckDetailTbl_RecordTruckTbl" StoreEntitySet="TruckDetailTbl">
+      <EndProperty Name="TruckDetailTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="RecordTruckTbl">
+        <ScalarProperty Name="ID" ColumnName="TruckID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_SupplierTransectionTbl_SupplierTbl" TypeName="Marbal.Model.FK_SupplierTransectionTbl_SupplierTbl" StoreEntitySet="SupplierTransectionTbl">
+      <EndProperty Name="SupplierTransectionTbl">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="SupplierTbl">
+        <ScalarProperty Name="ID" ColumnName="SupplierID" />
+      </EndProperty>
+      <Condition ColumnName="SupplierID" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

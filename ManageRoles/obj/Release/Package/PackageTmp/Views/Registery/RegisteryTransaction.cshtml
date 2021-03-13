@@ -1,0 +1,257 @@
+﻿@using ManageRoles.ViewModels
+@model ManageRoles.ViewModels.RegisteryViewVM
+
+@{
+    ViewBag.Title = "RegisteryTransaction";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>RegisteryTransaction</h2>
+@Html.HiddenFor(x => x.ID)
+@Html.HiddenFor(x => x.FardID)
+@Html.HiddenFor(x => x.UserID)
+@Html.HiddenFor(x => x.Type)
+@Html.HiddenFor(x => x.Date)
+<ul class="nav nav-tabs" id="khewatViewTab">
+    <li class="nav-item">
+        <a href="#home" class="nav-link" data-toggle="tab">تلاش شخص</a>
+    </li>
+    <li class="nav-item">
+        <a href="#KhewatView" class="nav-link" data-toggle="tab">اندراج فرد</a>
+    </li>
+    <li class="nav-item">
+        <a href="#messages" class="nav-link" data-toggle="tab">تفصیل</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade" id="home">
+        <div class="row">
+            @Html.Action("Personsearch", "Person")
+        </div>
+        <div class="row top-margin">
+            <div class="panel panel-default">
+                <div class="panel-heading">Search Person</div>
+                <div class="panel-body">
+                    <table id="UserTableContainer"></table>
+                    <div id="pager_UserTableContainer"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row top-margin">
+            <div class="panel panel-default">
+                <div class="panel-heading">Bia Person</div>
+                <div class="panel-body">
+                    <table id="OldUserTableContainer"></table>
+                    <div id="pager_OldUserTableContainer"></div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row top-margin">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mushtri Person</div>
+                <div class="panel-body">
+                    @Html.HiddenFor(x => x.PIDs);
+                    @Html.HiddenFor(x => x.MPIDS);
+                    <table id="NewUserTableContainer"></table>
+                    <div id="pager_NewUserTableContainer"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="KhewatView">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Owneship Detail by Khewat</div>
+            <div class="panel-body">
+
+                @Html.Action("KhewatInfo", "OwnerShip")
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Bia Detail</div>
+                <div class="panel-body">
+
+                    <div class="row top-margin">
+                        <div class="col-lg-12">
+                            <table id="FardSelectedView"></table>
+                            <div id="pager_FardSelectedView"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mushtri Detail</div>
+                <div class="panel-body">
+
+                    <div class="row top-margin">
+                        <div class="col-lg-12">
+                            <table id="MushtriSelectedView"></table>
+                            <div id="pager_MushtriSelectedView"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="messages">
+        Show selected data in grid and place complete button in a day
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Bia Detail</div>
+                <div class="panel-body">
+
+                    <div class="row top-margin">
+                        <div class="col-lg-12">
+                            <table id="BiaView"></table>
+                            <div id="pager_BiaView"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mushtri Detail</div>
+                <div class="panel-body">
+
+                    <div class="row top-margin">
+                        <div class="col-lg-12">
+                            <table id="MushtriView"></table>
+                            <div id="pager_MushtriView"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/RegistryScript.js"></script>
+<script src="~/Scripts/gridScripts/OwnerShipGrid.js"></script>
+<script src="~/Scripts/gridScripts/Z_Registery_EditGrid_Bia.js"></script>
+<script src="~/Scripts/gridScripts/Z_Registery_EditGrid_Mushtri.js"></script>
+<script src="~/Scripts/gridScripts/AreaCalc.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>
+<script src="~/Scripts/gridScripts/Z_PIDs.js"></script>
+
+<script>
+    $(function () {
+        //global value.
+        $khewatNoGlobal = $("#khewatNo");
+        Z_Registery.init();
+          $("#MauzaID").val("@Model.MauzaID");
+        $("#MauzaID").prop("disabled", true);
+        //Bia and mushri belongs to first table grid.
+        Z_Registery.PersonDetailGrid("UserTableContainer");
+        var Bia = Object.create(Z_PersonShowGRID) ;
+        var Mushtri = Object.create(Z_PersonShowGRID);
+        Bia.PersonDetailGrid("OldUserTableContainer");
+        Bia.loadGrid(Z_PIDs.GetPIDsByHiddenField( $("#PIDs")));
+
+        Mushtri.PersonDetailGrid("NewUserTableContainer");
+        Mushtri.loadGrid(Z_PIDs.GetPIDsByHiddenField($("#MPIDS")));
+
+        //belong to second tab data.
+        var BiaOwnerShip = Object.create(Z_Registery_EditGrid_Bia);
+        debugger;
+        BiaOwnerShip.BiaDetailGrid("FardSelectedView");
+        var mushtriOwnerShip = Object.create( Z_Registery_EditGrid_Mushtri);
+        mushtriOwnerShip.MushtriDetailGrid("MushtriSelectedView");
+        $("#khewatViewTab li:eq(0) a").tab('show');
+
+
+         //Re-load records when user click 'load records' button.
+        $('#BtnSearch').click(function (e) {
+            e.preventDefault();
+
+            var data = {
+                RelationID: $("#RelationID").val(),
+                MauzaID: $("#MauzaID").val(),
+                Name: $('#Name').val(),
+                LastName: $('#LastName').val(),
+                NIC: $('#NIC').val()
+            };
+            Z_Registery.loadGrid(data);
+
+
+        });//end of btnsearch click event
+
+         $('#khewatViewTab li:eq(1) a').on('click', function (e) {
+
+            // e.preventDefault();
+            $(this).tab('show');
+            var url = "/Fard/GetKhewatNumbers";
+             $.post(url, { IDs: JSON.parse($("#PIDs").val()), MauzaID: $("#MauzaID").val() }, function (data) {
+                 Z_COMMON.BindSelectBox(data.data);
+            }, 'json');
+
+         });//end of tab click
+
+
+        $('#khewatNo').change(function () {
+            if ($("#khewatNo").val() !== "" && $("#khewatNo").val() > 0) {
+                var url = "/OwnerShip/GetKhewatInfo";
+                $.getJSON(url, { mauzaID: $("#MauzaID").val(), khewatID: $("#khewatNo").val() }, function (data) {
+
+                    if (data) {
+
+                        $("#totalOwners").text(data.TotalOwners);
+                        $("#thissas").text("NOT SET YET");
+                        $("#tkhasra").text(data.TotalKhasras);
+                        $("#tohissas").text(data.TotalOwnerShipAreaKMF);
+                        $("#tplots").text();
+                    }
+                });
+                //debugger;
+                //var postdataparam = {
+                //    IDs: function () { return Z_PIDs.GetPIDsByHiddenField($("#PIDs")) },
+                //    KhewatID: function () { return $("#khewatNo").val() },
+                //    registerID: function () { return parseInt($("#ID").val()) },
+                //    isNew: function () { return false; }
+                //};
+                BiaOwnerShip.loadGrid();
+
+                //var mushtriParam = {
+                //    IDs: function () { return Z_PIDs.GetPIDsByHiddenField($("#MPIDS")) },
+                //    KhewatID: function () { return $("#khewatNo").val() },
+                //     registerID: function () { return parseInt($("#ID").val()) },
+                //     isNew: function () { return true; }
+                //};
+                mushtriOwnerShip.loadGrid();
+
+
+            }
+        });// of cbo box change select
+
+        var biaOwnershipView = Z_BaseClassJQGRID.bindGridTempate("BiaView", Z_COMMON.URL.REGISTERY_OWNERSHIP_BIA_View,
+            'Bia Detai', Z_JQGridTemplates.RegisteryBiaTempate);
+        var MushtriOwnershipView = Z_BaseClassJQGRID.bindGridTempate("MushtriView", Z_COMMON.URL.REGISTERY_OWNERSHIP_MUSHTRI_View,
+            'Mushtri Detai',Z_JQGridTemplates.RegisteryBiaTempate);
+        $('#khewatViewTab li:eq(2) a').on('click', function (e) {
+             var postdataBiaparam = {
+            IDs: function () { return Z_PIDs.GetPIDsByHiddenField($("#PIDs")) },
+
+            registerID: function () { return parseInt($("#ID").val()) },
+            isNew: function () { return false; }
+            };
+            Z_BaseClassJQGRID.loadGridWithGridID("BiaView", postdataBiaparam);
+
+           var postdataMushtriparam = {
+            IDs: function () { return Z_PIDs.GetPIDsByHiddenField($("#MPIDS")) },
+
+               registerID: function () { return parseInt($("#ID").val()) },
+               isNew: function () { return true; }
+            };
+            Z_BaseClassJQGRID.loadGridWithGridID("MushtriView", postdataMushtriparam);
+        });
+    });
+</script>

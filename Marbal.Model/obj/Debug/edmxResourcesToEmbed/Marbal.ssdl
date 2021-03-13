@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Marbal.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AmountTypeTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="CategoryTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ExpenseTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="Expense" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="ExpenseTypeTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GatePassDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="GatePassID" Type="int" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrderDetailID" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <EntityType Name="GatePassTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="ReciverName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReciverNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OrderBookDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="250" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Length" Type="int" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="ItemsCount" Type="int" />
+    <Property Name="TotalSize" Type="bigint" />
+    <Property Name="SingleSizePrice" Type="int" />
+    <Property Name="ItemTotalPrice" Type="int" />
+    <Property Name="OrderBookID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderBookTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="MobileNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="DeliveryDate" Type="date" />
+    <Property Name="OrderDate" Type="date" />
+  </EntityType>
+  <EntityType Name="OrderTransectionTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="TransactionTpeID" Type="int" />
+    <Property Name="Date" Type="date" />
+    <Property Name="OrderBookID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCategoryTbl">
+    <Key>
+      <PropertyRef Name="ProductCatID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductCatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="RecordTruckTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DriverName" Type="nvarchar" MaxLength="250" />
+    <Property Name="DrivrNumber" Type="varchar" MaxLength="250" />
+    <Property Name="TruckNumber" Type="varchar" MaxLength="250" />
+    <Property Name="SupplierID" Type="int" Nullable="false" />
+    <Property Name="TruckWeight" Type="int" />
+    <Property Name="PerTonRent" Type="int" />
+    <Property Name="LabourCost" Type="int" />
+    <Property Name="WeightExpense" Type="int" />
+    <Property Name="TotalSqFeet" Type="int" />
+    <Property Name="InAdvancePament" Type="int" />
+    <Property Name="Date" Type="date" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="SupplierTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Number" Type="varchar" MaxLength="250" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="250" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="SupplierTransectionTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierID" Type="int" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="250" />
+    <Property Name="SubmitAmount" Type="int" />
+    <Property Name="AmountType" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="SupplierTruckTrans">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TruckID" Type="int" />
+  </EntityType>
+  <EntityType Name="TruckDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TruckID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Length" Type="int" />
+    <Property Name="Width" Type="int" />
+    <Property Name="Breadth" Type="int" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Marbal.dbo.vw_CategoriesByProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_CategoriesByProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="150" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Marbal.dbo.vw_ExpensesTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ExpensesTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Expense" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Marbal.dbo.vw_ProductTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ProductTbl">
+    <Key>
+      <PropertyRef Name="ProductCatID" />
+    </Key>
+    <Property Name="ProductCatID" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="150" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Marbal.dbo.vw_TruckDetailTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_TruckDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TruckID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TruckID" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="150" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Length" Type="int" />
+    <Property Name="Width" Type="int" />
+    <Property Name="Breadth" Type="int" />
+    <Property Name="Count" Type="int" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ExpenseTbl_ExpenseTypeTbl">
+    <End Role="ExpenseTypeTbl" Type="Self.ExpenseTypeTbl" Multiplicity="1" />
+    <End Role="ExpenseTbl" Type="Self.ExpenseTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseTypeTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ExpenseTbl">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GatePassDetailTbl_GatePassTbl">
+    <End Role="GatePassTbl" Type="Self.GatePassTbl" Multiplicity="0..1" />
+    <End Role="GatePassDetailTbl" Type="Self.GatePassDetailTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GatePassTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GatePassDetailTbl">
+        <PropertyRef Name="GatePassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GatePassDetailTbl_OrderBookDetailTbl1">
+    <End Role="OrderBookDetailTbl" Type="Self.OrderBookDetailTbl" Multiplicity="1" />
+    <End Role="GatePassDetailTbl" Type="Self.GatePassDetailTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderBookDetailTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GatePassDetailTbl">
+        <PropertyRef Name="OrderDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderBookDetailTbl_OrderBookTbl">
+    <End Role="OrderBookTbl" Type="Self.OrderBookTbl" Multiplicity="1" />
+    <End Role="OrderBookDetailTbl" Type="Self.OrderBookDetailTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderBookTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderBookDetailTbl">
+        <PropertyRef Name="OrderBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderBookDetailTbl_ProductCategoryTbl">
+    <End Role="ProductCategoryTbl" Type="Self.ProductCategoryTbl" Multiplicity="1" />
+    <End Role="OrderBookDetailTbl" Type="Self.OrderBookDetailTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategoryTbl">
+        <PropertyRef Name="ProductCatID" />
+      </Principal>
+      <Dependent Role="OrderBookDetailTbl">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderTransectionTbl_OrderBookTbl">
+    <End Role="OrderBookTbl" Type="Self.OrderBookTbl" Multiplicity="1" />
+    <End Role="OrderTransectionTbl" Type="Self.OrderTransectionTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderBookTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderTransectionTbl">
+        <PropertyRef Name="OrderBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategoryTbl_CategoryTbl">
+    <End Role="CategoryTbl" Type="Self.CategoryTbl" Multiplicity="1" />
+    <End Role="ProductCategoryTbl" Type="Self.ProductCategoryTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductCategoryTbl">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategoryTbl_ProductTbl">
+    <End Role="ProductTbl" Type="Self.ProductTbl" Multiplicity="1" />
+    <End Role="ProductCategoryTbl" Type="Self.ProductCategoryTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductCategoryTbl">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecordTruckTbl_SupplierTbl">
+    <End Role="SupplierTbl" Type="Self.SupplierTbl" Multiplicity="1" />
+    <End Role="RecordTruckTbl" Type="Self.RecordTruckTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RecordTruckTbl">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierTransectionTbl_AmountTypeTbl">
+    <End Role="AmountTypeTbl" Type="Self.AmountTypeTbl" Multiplicity="0..1" />
+    <End Role="SupplierTransectionTbl" Type="Self.SupplierTransectionTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AmountTypeTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SupplierTransectionTbl">
+        <PropertyRef Name="AmountType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierTransectionTbl_SupplierTbl">
+    <End Role="SupplierTbl" Type="Self.SupplierTbl" Multiplicity="0..1" />
+    <End Role="SupplierTransectionTbl" Type="Self.SupplierTransectionTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SupplierTransectionTbl">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierTransectionTbl_SupplierTruckTrans">
+    <End Role="SupplierTruckTrans" Type="Self.SupplierTruckTrans" Multiplicity="1" />
+    <End Role="SupplierTransectionTbl" Type="Self.SupplierTransectionTbl" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierTruckTrans">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SupplierTransectionTbl">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierTruckTrans_RecordTruckTbl">
+    <End Role="RecordTruckTbl" Type="Self.RecordTruckTbl" Multiplicity="0..1" />
+    <End Role="SupplierTruckTrans" Type="Self.SupplierTruckTrans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecordTruckTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SupplierTruckTrans">
+        <PropertyRef Name="TruckID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckDetailTbl_ProductCategoryTbl">
+    <End Role="ProductCategoryTbl" Type="Self.ProductCategoryTbl" Multiplicity="1" />
+    <End Role="TruckDetailTbl" Type="Self.TruckDetailTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategoryTbl">
+        <PropertyRef Name="ProductCatID" />
+      </Principal>
+      <Dependent Role="TruckDetailTbl">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckDetailTbl_RecordTruckTbl">
+    <End Role="RecordTruckTbl" Type="Self.RecordTruckTbl" Multiplicity="1" />
+    <End Role="TruckDetailTbl" Type="Self.TruckDetailTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecordTruckTbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TruckDetailTbl">
+        <PropertyRef Name="TruckID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarbalModelStoreContainer">
+    <EntitySet Name="AmountTypeTbl" EntityType="Self.AmountTypeTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryTbl" EntityType="Self.CategoryTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpenseTbl" EntityType="Self.ExpenseTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpenseTypeTbl" EntityType="Self.ExpenseTypeTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GatePassDetailTbl" EntityType="Self.GatePassDetailTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GatePassTbl" EntityType="Self.GatePassTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderBookDetailTbl" EntityType="Self.OrderBookDetailTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderBookTbl" EntityType="Self.OrderBookTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderTransectionTbl" EntityType="Self.OrderTransectionTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategoryTbl" EntityType="Self.ProductCategoryTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductTbl" EntityType="Self.ProductTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecordTruckTbl" EntityType="Self.RecordTruckTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplierTbl" EntityType="Self.SupplierTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplierTransectionTbl" EntityType="Self.SupplierTransectionTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplierTruckTrans" EntityType="Self.SupplierTruckTrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruckDetailTbl" EntityType="Self.TruckDetailTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_CategoriesByProduct" EntityType="Self.vw_CategoriesByProduct" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_CategoriesByProduct].[ID] AS [ID], 
+    [vw_CategoriesByProduct].[CategoryName] AS [CategoryName], 
+    [vw_CategoriesByProduct].[ProductID] AS [ProductID]
+    FROM [dbo].[vw_CategoriesByProduct] AS [vw_CategoriesByProduct]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ExpensesTbl" EntityType="Self.vw_ExpensesTbl" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ExpensesTbl].[ID] AS [ID], 
+    [vw_ExpensesTbl].[Type] AS [Type], 
+    [vw_ExpensesTbl].[Expense] AS [Expense], 
+    [vw_ExpensesTbl].[Date] AS [Date]
+    FROM [dbo].[vw_ExpensesTbl] AS [vw_ExpensesTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ProductTbl" EntityType="Self.vw_ProductTbl" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ProductTbl].[ProductCatID] AS [ProductCatID], 
+    [vw_ProductTbl].[ProductName] AS [ProductName], 
+    [vw_ProductTbl].[CategoryName] AS [CategoryName]
+    FROM [dbo].[vw_ProductTbl] AS [vw_ProductTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_TruckDetailTbl" EntityType="Self.vw_TruckDetailTbl" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_TruckDetailTbl].[ID] AS [ID], 
+    [vw_TruckDetailTbl].[TruckID] AS [TruckID], 
+    [vw_TruckDetailTbl].[ProductName] AS [ProductName], 
+    [vw_TruckDetailTbl].[CategoryName] AS [CategoryName], 
+    [vw_TruckDetailTbl].[Length] AS [Length], 
+    [vw_TruckDetailTbl].[Width] AS [Width], 
+    [vw_TruckDetailTbl].[Breadth] AS [Breadth], 
+    [vw_TruckDetailTbl].[Count] AS [Count], 
+    [vw_TruckDetailTbl].[ProductID] AS [ProductID]
+    FROM [dbo].[vw_TruckDetailTbl] AS [vw_TruckDetailTbl]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ExpenseTbl_ExpenseTypeTbl" Association="Self.FK_ExpenseTbl_ExpenseTypeTbl">
+      <End Role="ExpenseTypeTbl" EntitySet="ExpenseTypeTbl" />
+      <End Role="ExpenseTbl" EntitySet="ExpenseTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GatePassDetailTbl_GatePassTbl" Association="Self.FK_GatePassDetailTbl_GatePassTbl">
+      <End Role="GatePassTbl" EntitySet="GatePassTbl" />
+      <End Role="GatePassDetailTbl" EntitySet="GatePassDetailTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GatePassDetailTbl_OrderBookDetailTbl1" Association="Self.FK_GatePassDetailTbl_OrderBookDetailTbl1">
+      <End Role="OrderBookDetailTbl" EntitySet="OrderBookDetailTbl" />
+      <End Role="GatePassDetailTbl" EntitySet="GatePassDetailTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderBookDetailTbl_OrderBookTbl" Association="Self.FK_OrderBookDetailTbl_OrderBookTbl">
+      <End Role="OrderBookTbl" EntitySet="OrderBookTbl" />
+      <End Role="OrderBookDetailTbl" EntitySet="OrderBookDetailTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderBookDetailTbl_ProductCategoryTbl" Association="Self.FK_OrderBookDetailTbl_ProductCategoryTbl">
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbl" />
+      <End Role="OrderBookDetailTbl" EntitySet="OrderBookDetailTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderTransectionTbl_OrderBookTbl" Association="Self.FK_OrderTransectionTbl_OrderBookTbl">
+      <End Role="OrderBookTbl" EntitySet="OrderBookTbl" />
+      <End Role="OrderTransectionTbl" EntitySet="OrderTransectionTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryTbl_CategoryTbl" Association="Self.FK_ProductCategoryTbl_CategoryTbl">
+      <End Role="CategoryTbl" EntitySet="CategoryTbl" />
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryTbl_ProductTbl" Association="Self.FK_ProductCategoryTbl_ProductTbl">
+      <End Role="ProductTbl" EntitySet="ProductTbl" />
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecordTruckTbl_SupplierTbl" Association="Self.FK_RecordTruckTbl_SupplierTbl">
+      <End Role="SupplierTbl" EntitySet="SupplierTbl" />
+      <End Role="RecordTruckTbl" EntitySet="RecordTruckTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTransectionTbl_AmountTypeTbl" Association="Self.FK_SupplierTransectionTbl_AmountTypeTbl">
+      <End Role="AmountTypeTbl" EntitySet="AmountTypeTbl" />
+      <End Role="SupplierTransectionTbl" EntitySet="SupplierTransectionTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTransectionTbl_SupplierTbl" Association="Self.FK_SupplierTransectionTbl_SupplierTbl">
+      <End Role="SupplierTbl" EntitySet="SupplierTbl" />
+      <End Role="SupplierTransectionTbl" EntitySet="SupplierTransectionTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTransectionTbl_SupplierTruckTrans" Association="Self.FK_SupplierTransectionTbl_SupplierTruckTrans">
+      <End Role="SupplierTruckTrans" EntitySet="SupplierTruckTrans" />
+      <End Role="SupplierTransectionTbl" EntitySet="SupplierTransectionTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTruckTrans_RecordTruckTbl" Association="Self.FK_SupplierTruckTrans_RecordTruckTbl">
+      <End Role="RecordTruckTbl" EntitySet="RecordTruckTbl" />
+      <End Role="SupplierTruckTrans" EntitySet="SupplierTruckTrans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckDetailTbl_ProductCategoryTbl" Association="Self.FK_TruckDetailTbl_ProductCategoryTbl">
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbl" />
+      <End Role="TruckDetailTbl" EntitySet="TruckDetailTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckDetailTbl_RecordTruckTbl" Association="Self.FK_TruckDetailTbl_RecordTruckTbl">
+      <End Role="RecordTruckTbl" EntitySet="RecordTruckTbl" />
+      <End Role="TruckDetailTbl" EntitySet="TruckDetailTbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

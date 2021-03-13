@@ -1,0 +1,15 @@
+﻿@model ManageRoles.ViewModels.GridVM
+<div class="col-lg-12">
+    <table id="@Model.ID"></table>
+    <div id="pager_@Model.ID"></div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        // PersonDetailGrid(Infuture need to pass ViewBag.URL);
+        var model = @Html.Raw(Json.Encode(Model.URL));
+        Z_GRID.PersonDetailGrid("@Model.ID", "@Model.URL");
+    });
+</script>
+<script src="~/Scripts/gridScripts/PersonGrid.js"></script>

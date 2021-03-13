@@ -1,0 +1,12 @@
+D:\Marbal\Marbal.Model\bin\Debug\Marbal.Model.dll.config
+D:\Marbal\Marbal.Model\bin\Debug\Marbal.Model.dll
+D:\Marbal\Marbal.Model\bin\Debug\Marbal.Model.pdb
+D:\Marbal\Marbal.Model\bin\Debug\EntityFramework.dll
+D:\Marbal\Marbal.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Marbal\Marbal.Model\bin\Debug\EntityFramework.xml
+D:\Marbal\Marbal.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Marbal\Marbal.Model\obj\Debug\Marbal.Model.csprojAssemblyReference.cache
+D:\Marbal\Marbal.Model\obj\Debug\Marbal.Model.csproj.CoreCompileInputs.cache
+D:\Marbal\Marbal.Model\obj\Debug\Marbal.Model.csproj.CopyComplete
+D:\Marbal\Marbal.Model\obj\Debug\Marbal.Model.dll
+D:\Marbal\Marbal.Model\obj\Debug\Marbal.Model.pdb

@@ -1,0 +1,282 @@
+﻿@model ManageRoles.ViewModels.CreatePlotViewVM
+
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Person
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="panel-body">
+
+        <div id="person_aert" class="alert" hidden="hidden" role="alert">
+            <a href="#" class="close" onclick="hideaert()" aria-label="close">&times;</a>
+            <strong>Message!</strong><div id="person_message"></div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Ajax.BeginForm("Create", "Plot", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @*<div class="row top-margin">
+                    <div class="col-lg-4">
+                        @Html.LabelFor(model => model.MauzaID, htmlAttributes: new { @class = "control-label manadatory" })
+                        @Html.DropDownListFor(model => model.MauzaID, new SelectList(Model.Mauza, "ID", "MauzaName"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MauzaID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            <div class="row top-margin">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-4">
+
+                    @Html.Label("Mauza Name ")
+                    @Html.DropDownListFor(model => model.MauzaID, new SelectList(Model.Mauzas, "ID", "MauzaName"), "Select Mauza", new { @class = "form-control", @id = "mauzaID" })
+                    @*     @Html.DropDownList("MauzaID", new SelectList(ViewBag.MauzasList, "ID", "MauzaName") ,"select Value " )*@
+                    @*@Html.DropDownList("Mauza ", new SelectList(Model.Mauzas, "ID", "MauzaName"), new { @class = "form-control", @id = "mauzaID" })*@
+
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.KhewatID, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.KhewatID, new SelectList(Enumerable.Empty<SelectListItem>(), "ID", "Name"), new { @class = "form-control", @id = "khewatID" })
+                    @Html.ValidationMessageFor(model => model.KhewatID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.KhasraID, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.KhasraID, new SelectList(Enumerable.Empty<SelectListItem>(), "ID", "Name"), new { @class = "form-control", @id = "khsraID" })
+                    @Html.ValidationMessageFor(model => model.KhasraID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+
+                    @Html.LabelFor(model => model.PlotName, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.PlotName, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.PlotName, "", new { @class = "text-danger" })
+                    <br />
+
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.PlotTypeID, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.PlotTypeID, new SelectList(Model.PlotTypes, "ID", "Name"),"select PlotyType", new { @class = "form-control", @id = "plotTypes" })
+                    @Html.ValidationMessageFor(model => model.PlotTypeID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.PlotArea, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.PlotArea, new { @class = "form-control", @data_inputmask_regex = @"^[0-9]+-(1[0-9]|[1-9]|0|0[1-9])-([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-6][0-9]|27[0-1])$" })
+                    @Html.ValidationMessageFor(model => model.PlotArea, "", new { @class = "text-danger" })
+
+                    @Html.HiddenFor(model => model.PlotID, new { @id = "plotId" })
+
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Add Plot" class="btn btn-success" id="BtnAddPlot" />
+                    @*@Html.ActionLink("New Person", "NewPerson", "Ownership", null, new { @class = "btn btn-danger", id="BtnSearch" })*@
+                    <input type="button" value="Clear Form" class="btn btn-warning" id="BtnClear" />
+                </div>
+            </div>
+
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Plots</div>
+        <div class="panel-body">
+            <table id="PlotViewGrid"></table>
+            <div id="pager_PlotViewGrid"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    function OnSuccess(data) {
+        clearForm();
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-success alert-dismissible");
+        $("#person_aert").show();
+        debugger;
+
+        //$("#exampleModalCenter").modal('hide');
+        alert('HTTP Status Code: ' + data.param1 + "  " + data.param2);
+    }
+    function OnFailure(response) {
+        debugger;
+        data = response.responseJSON;
+
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-danger alert-dismissible");
+        $("#person_aert").show();
+    }
+    function hideaert() {
+        $("#person_aert").hide();
+    }
+    function FillForm(cellid) {
+        var rowdata = Z_BaseClassJQGRID.GetRowValue($("#PlotViewGrid"), cellid);
+        debugger;
+        if (rowdata) {
+            $("#plotId").val(rowdata.PlotName);
+            //$("#mauzaID").val();
+            $("#PlotName").val(rowdata.PlotName);
+            $("#khsraID").val(rowdata.KhasraID);
+            $("#plotTypes  option").filter(function () {
+                //may want to use $.trim in here
+                return $(this).text() == rowdata.PlotTypeName;
+            }).attr('selected', true);
+            $("#PlotArea").val(rowdata.PlotArea);
+        }
+    }
+    $(document).ready(function () {
+        $("#BtnClear").click(function () {
+            clearForm();
+            
+        });
+        $("#mauzaID").change(function () {
+            var dID = $('#mauzaID option:selected').val();
+            $.getJSON("/Plot/GetKhewatNumbers", { mauzaID: dID },
+                function (data) {
+                    debugger;
+                    var select = $("#khewatID");
+                    select.empty();
+                    select.append($('<option/>', {
+                        value: 0,
+                        text: "Select Khewat"
+                    }));
+                    $.each(data.data, function (index, itemData) {
+                        select.append($('<option/>', {
+                            value: itemData.ID,
+                            text: itemData.KhewatNo
+                        }));
+                    });
+                });
+        });
+
+        $("#khewatID").change(function () {
+            var dID = $('#khewatID option:selected').val();
+            $.getJSON("/Plot/GetKhasraNumbers", { khewatID: dID },
+                function (data) {
+                    debugger;
+                    var select = $("#khsraID");
+                    select.empty();
+                    select.append($('<option/>', {
+                        value: 0,
+                        text: "Select Khsra"
+                    }));
+                    $.each(data.data, function (index, itemData) {
+                        select.append($('<option/>', {
+                            value: itemData.ID,
+                            text: itemData.KhasroNo
+                        }));
+                    });
+                });
+        });
+
+    });
+
+    function clearForm () {
+        $("#mauzaID").prop('selectedIndex', 0);
+            $("#khewatID").prop("selectedIndex", 0);
+            $("#PlotName").val(null);
+            $("#plotId").val(null);
+            $("#khsraID").val(null);
+            $("khewatID").val(null);
+           /* $("#plotTypes  option").filter(function () {
+                return $(this).text() == null;
+            }).attr('selected', true);*/
+            $("#plotTypes").prop("selectedIndex", 0);
+            $("#PlotArea").val(null);
+
+    }
+
+    $(function () {
+
+        Z_BaseClassJQGRID.bindGridTempate("PlotViewGrid", Z_COMMON.URL.PLOT_GRID_VIEW, 'Plot Search', tmp, "local");
+        $("#khsraID").change(function (e) {
+            e.preventDefault();
+            var dId = $("#khsraID option:selected").val();
+            debugger;
+            //var tst = {
+            //    PlotName: $("#plotName").val(),
+            //    PlotArea: $("#plotArea").val(),
+            //    KhasraID: $("#khsraID").val(),
+            //    PlotTypeID: $("#plotTypeId").val()
+
+            //};
+            var tst = {
+                KhasraID: dId
+            }
+            Z_BaseClassJQGRID.loadGridWithGridID("PlotViewGrid", tst);
+
+
+        });
+    });
+    var tmp = [
+
+        {
+            name: "PlotName",
+            index: "PlotName",
+            width: '150'
+
+        },
+        {
+            name: "PlotArea",
+            index: "Area ( K-M-F )",
+            width: '100',
+            formatter: function (cellValue, options, rowObject) {
+                return AreaCalc.getAreaInKMF(cellValue, 272);
+            }
+
+        },
+        {
+            name: "KhasraID",
+            index: "Khasra ID",
+            width: '100'
+        },
+        {
+            name: "PlotTypeName",
+            index: "Plot Type",
+            width: '100'
+        },
+        {
+            name: "ID",
+            index: "ID",
+            key: true
+            ,
+            formatter: function (cellValue, options, rowObject) {
+
+                return '<button type="button" class="btn btn-link"onClick=FillForm(' + cellValue + ')  > Select</button >';
+            }
+        }
+
+
+    ];
+
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>
+<script src="~/Scripts/gridScripts/AreaCalc.js"></script>

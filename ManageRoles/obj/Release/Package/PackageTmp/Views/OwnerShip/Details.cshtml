@@ -1,0 +1,64 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">User Deail</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="DetailView"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#DetailView').jtable({
+            title: 'UsersList',
+            paging: true,
+            pageSize: 10,
+            sorting: true,
+            actions:
+            {
+                listAction: '/Ownership/DetailShowData'
+            },
+            fields: {
+                ID: {
+                    key: true,
+                    list: false
+                },
+                MauzaName: {
+
+                    title: 'MauzaName',
+                    width: '10%'
+                },
+                Name: {
+
+                    title: 'Name',
+                    width: '10%'
+                },
+                RelationName: {
+
+                    title: 'RelationName',
+                    width: '5%'
+                },
+                LastName: {
+                    title: 'LastName',
+                    width: '10%'
+                },
+                NIC: {
+                    title: 'NIC',
+                    width: '20%'
+                },
+
+                PersonAreaKMF: {
+                    title: '"Area(K-M-F)',
+                    width: '10%'
+                }
+
+            }
+        });
+
+
+        //Load Customer data from server
+        $('#UserTableContainer').jtable('load');
+    });
+ </script>

@@ -1,0 +1,21 @@
+﻿<script src="~/Scripts/GridTemplates/OwnerShipDetailView.js"></script>
+@*<div class="row">
+        <table id="DetailViewGrid"></table>
+        <div id="pager_DetailViewGrid"></div>
+    </div>*@
+
+
+
+    <table id="DetailViewGrid"></table>
+    <div id="pager_DetailViewGrid"></div>
+
+<script>
+
+    $(document).ready(function () {
+        Z_BaseClassJQGRID.bindGridTempate("DetailViewGrid", Z_COMMON.URL.Ownership_Detail_Grid, 'OwnerShip Detail', ownerShipDetailTemplate, "local");
+
+        // PersonDetailGrid(Infuture need to pass ViewBag.URL);
+        //OwnershiDetailGrid('/Ownership/DetailShowData');
+    });
+</script>
+@*<script src="~/Scripts/gridScripts/OwnerShipGrid.js"></script>*@

@@ -1,0 +1,247 @@
+﻿@model ManageRoles.ViewModels.OrderCreateVM
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/GridTemplates/TruckDetailGridTem.js"></script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Order
+    </div>
+
+    <div class="panel-body">
+
+        <div id="person_aert" class="alert" hidden="hidden" role="alert">
+            <a href="#" class="close" onclick="hideaert()" aria-label="close">&times;</a>
+            <strong>Message!</strong><div id="person_message"></div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Ajax.BeginForm("Create", "Order", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row top-margin">
+                <div class="col-lg-12">
+                    @Html.HiddenFor(model => model.ID, new { @id = "ID" })
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-3">
+                    @Html.Label("نام", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.Label("فون نمبر", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.Label("پتہ", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @maxlength = 250 })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-lg-3">
+                    @Html.Label("تاریخ  فراہمی", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.DeliveryDate, "{0:dd/MM/yyyy}", new { @class = "form-control", @autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <br />
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add Order Detail
+                </div>
+
+                <div class="panel-body">
+                    <div class="row top-margin">
+                        <div class="clearfix"></div>
+                        <div class="col-lg-3">
+                            @Html.Label("تفصیل", htmlAttributes: new { @class = "control-label " })
+                            @Html.TextBoxFor(model => model.Detail, new { @class = "form-control", @maxlength = 250 })
+                            @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label("ماربل", htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.ProductID, new SelectList(Model.Products, "ID", "ProductName"), "Select Product", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label("Type", htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "CategoryName"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-1">
+                            @Html.Label("لمبایٴ", htmlAttributes: new { @class = "control-label " })
+                            @Html.TextBoxFor(model => model.Length, new { @type = "number", @class = "form-control", @maxlength = 50 })
+                            @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-1">
+                            @Html.Label("چوڑایٴ", htmlAttributes: new { @class = "control-label " })
+                            @Html.TextBoxFor(model => model.Width, new { @type = "number", @class = "form-control", @maxlength = 50 })
+                            @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-1">
+                            @Html.Label("مکدار", htmlAttributes: new { @class = "control-label " })
+                            @Html.TextBoxFor(model => model.ItemsCount, new { @type = "number", @class = "form-control", @maxlength = 50 })
+                            @Html.ValidationMessageFor(model => model.ItemsCount, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-1">
+                            @Html.Label("قیمت  فی  پیس", htmlAttributes: new { @class = "control-label " })
+                            @Html.TextBoxFor(model => model.SingleSizePrice, new { @type = "number", @class = "form-control", @maxlength = 50 })
+                            @Html.ValidationMessageFor(model => model.SingleSizePrice, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="submit" value="محفوظ کریں" class="btn btn-info" style="margin-top:23px" id="BtnAddDetail" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="row top-margin">
+                        <div class="clearfix"></div>
+                        @*<div class="col-lg-4">
+                    @Html.Label("کُل  مربہ  فیٹ")
+                    @Html.TextBoxFor(x => x.TotalSize, new { @class = "form-control", @readonly = "readonly" })
+                </div>*@
+
+                        @*<div class="col-lg-4">
+                    @Html.Label("قیمت")
+                    @Html.TextBoxFor(x => x.ItemTotalPrice, new { @class = "form-control", @readonly = "readonly" })
+                </div>*@
+
+                    </div>
+                    <div class="row top-margin">
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input type="button" value="ختم  کریں" class="btn btn-success" />
+                        </div>
+                    </div>
+
+                    }
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Order Details</div>
+                    <div class="panel-body">
+                        <table id="OrderDetailViewGrid"></table>
+                        <div id="pager_OrderDetailViewGrid"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+
+
+    //Function for sasving Truck detail and its details
+    @*$("#BtnAddDetail").click(function () {
+        var productID = $("#product option:selected").val();
+        var length = $("#Length").val();
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddDetail","Truck")",
+            dataType: "json",
+            date: {},
+            success: function (data) {
+
+            }
+        });
+    });*@
+
+
+    function OnSuccess(data) {
+        
+        document.getElementById('ID').value = data.param1.ID;
+        $("#ProductID").prop("selectedIndex", 0);
+        var select = $("#CategoryID");
+                    select.empty();
+                    select.append($('<option/>', {
+                    value: 0,
+                    text: "Select Category"
+                    }));
+        $("#Length").val(null);
+        $("#Width").val(null);
+        $("#Detail").val(null);
+        $("#ItemsCount").val(null);
+        $("#SingleSizePrice").val(null);
+        debugger;
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-success alert-dismissible");
+        $("#person_aert").show();
+         setTimeout(function () {
+            $("#person_aert").hide('blind', {},300);
+         }, 3000);
+        debugger;
+        //gridReLoad();
+
+    }
+    function OnFailure(response) {
+        debugger;
+        data = response.responseJSON;
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-danger alert-dismissible");
+        $("#person_aert").show();
+         setTimeout(function () {
+            $("#person_aert").hide('blind', {},300);
+        }, 3000);
+    }
+
+    $(function () {
+
+        $("#DeliveryDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        }
+         );
+        //Z_BaseClassJQGRID.bindGridTempate("OrderDetailViewGrid", Z_COMMON.URL.OrderDetail_Grid_View, 'Order Detail', OrderDetailViewGrid, "local");
+    });
+    function gridReLoad() {
+        debugger;
+        var orderID = parseInt(document.getElementById('ID').value);
+        var tst = { orderID: orderID }
+        Z_BaseClassJQGRID.loadGridWithGridID("OrderDetailViewGrid", tst);
+    }
+    $("#ProductID").change(function () {
+        var pID = $('#ProductID option:selected').val();
+        $.getJSON(Z_COMMON.URL.GET_Categories_BY_ProductID, { productID: pID},
+            function (data) {
+                    var select = $("#CategoryID");
+                    select.empty();
+                    select.append($('<option/>', {
+                    value: 0,
+                    text: "Select Category"
+                    }));
+                $.each(data.data, function (index, itemData) {
+                        select.append($('<option/>', {
+                        value: itemData.ID,
+                        text: itemData.CategoryName
+                        }));
+                    });
+                });
+    });
+
+
+
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>
+

@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Html.Action("PersonSearch", "Person")
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">OwnerShips</div>
+        <div class="panel-body">
+            <table id="PersonViewGrid"></table>
+            <div id="pager_PersonViewGrid"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="AddUpdateModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+</div>
+<script>
+    function clearForm () {
+        $("#MauzaID").prop('selectedIndex', 0);
+            $("#RelationID").prop("selectedIndex", 0);
+            $("#Name").val(null);
+            $("#LastName").val(null);
+            $("#NIC").val(null);
+
+    }
+    function ShowCreateView(cellID) {
+        //alert("cellID");
+        //$('.bd-example-modal-lg').modal('show')
+        $.get(Z_COMMON.URL.Ownership_ADDUPDATE, { MauzaID: $("#MauzaID").val(), PersonID: cellID },
+            function (data) {
+                debugger;
+                $("#AddUpdateModalCenter").html(data);
+                $('#AddUpdateModalCenter').modal('show');
+
+            });
+
+    }
+    $(function () {
+        $("#BtnClear").click(function () {
+            clearForm();
+            
+        });
+
+        Z_BaseClassJQGRID.bindGridTempate("PersonViewGrid", Z_COMMON.URL.PERSON_GRID_VIEW, 'Person Search', personTmp, "local");
+        $('#MauzaID').change(function (e) {
+            e.preventDefault();
+
+            var tst = {
+                //RelationID: $("#RelationID").val(),
+                MauzaID: $("#MauzaID").val()
+                //Name: $('#Name').val(),
+                //LastName: $('#LastName').val(),
+                //NIC: $('#NIC').val()
+            };
+            debugger;
+            Z_BaseClassJQGRID.loadGridWithGridID("PersonViewGrid", tst);
+
+
+        });
+    });
+    var personTmp = [
+
+        {
+            name: "Name",
+            index: "Name",
+            width: '150'
+
+        },
+        {
+            name: "RelationName",
+            index: "RelationName",
+            width: '50'
+        },
+        {
+            name: "LastName",
+            index: "LastName",
+            width: '150'
+        },
+        {
+            name: "NIC",
+            index: "NIC",
+            width: '100'
+        },
+        {
+            index: "PhoneNumber",
+            name: "PhoneNumber",
+            width: '100'
+        },
+        {
+            name: "PersonKhewats",
+            index: "Khewat No",
+            width: '50'
+        },
+        {
+            name: "personArea",
+            index: "Area ( K-M-F )",
+            width: '100'
+
+        }, {
+            name: "ID",
+            index: "ID",
+            key: true
+            ,
+            formatter: function (cellValue, options, rowObject) {
+
+                return '<button type="button" class="btn btn-link"onClick=ShowCreateView(' + cellValue + ')  > Select</button >';
+            }
+        }
+
+
+    ];
+    
+</script>
+
+<script src="~/Scripts/gridScripts/common_script.js"></script>

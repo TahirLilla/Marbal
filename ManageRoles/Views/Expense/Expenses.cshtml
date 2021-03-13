@@ -1,0 +1,109 @@
+﻿@model ManageRoles.ViewModels.ExpensesVM
+@{
+    ViewBag.Title = "Expeseses";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/GridTemplates/ExpensesViewGrid.js"></script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Category
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="panel-body">
+
+        <div id="person_aert" class="alert" hidden="hidden" role="alert">
+            <a href="#" class="close" onclick="hideaert()" aria-label="close">&times;</a>
+            <strong>Message!</strong><div id="person_message"></div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Ajax.BeginForm("Expenses", "Expense", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row top-margin">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.Types, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.TypeID, new SelectList(Model.Types, "ID", "Type"), "Select Type", new { @class = "form-control", @maxlength = 50, searchable = "Search here.." })
+                    @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.Expense, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.Expense, new { @type = "number", @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.Expense, "", new { @class = "text-danger" })
+                    <br />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Add Type" class="btn btn-success" />
+                </div>
+            </div>
+
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Products</div>
+        <div class="panel-body">
+            <table id="ExpensesViewGrid"></table>
+            <div id="pager_ExpensesViewGrid"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    function OnSuccess(data) {
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-success alert-dismissible");
+        $("#person_aert").show();
+        setTimeout(function () {
+            $("#person_aert").hide('blind', {}, 300);
+        }, 3000);
+        gridReLoad();
+    }
+    function OnFailure(response) {
+        debugger;
+        data = response.responseJSON;
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-danger alert-dismissible");
+        $("#person_aert").show();
+        setTimeout(function () {
+            $("#person_aert").hide('blind', {}, 300);
+        }, 3000);
+    }
+
+    $(function () {
+
+        Z_BaseClassJQGRID.bindGridTempate("ExpensesViewGrid", Z_COMMON.URL.Expenses_View_Grid, 'خرچے', ExpensesViewGrid, "local");
+        gridReLoad();
+    });
+    function gridReLoad() {
+        var tst = {}
+        Z_BaseClassJQGRID.loadGridWithGridID("ExpensesViewGrid", tst);
+
+    }
+
+
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>

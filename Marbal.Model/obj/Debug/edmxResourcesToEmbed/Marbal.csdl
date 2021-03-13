@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Marbal.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MarbalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AmountTypeTbls" EntityType="Marbal.Model.AmountTypeTbl" />
+    <EntitySet Name="CategoryTbls" EntityType="Marbal.Model.CategoryTbl" />
+    <EntitySet Name="ExpenseTbls" EntityType="Marbal.Model.ExpenseTbl" />
+    <EntitySet Name="ExpenseTypeTbls" EntityType="Marbal.Model.ExpenseTypeTbl" />
+    <EntitySet Name="GatePassDetailTbls" EntityType="Marbal.Model.GatePassDetailTbl" />
+    <EntitySet Name="GatePassTbls" EntityType="Marbal.Model.GatePassTbl" />
+    <EntitySet Name="OrderBookDetailTbls" EntityType="Marbal.Model.OrderBookDetailTbl" />
+    <EntitySet Name="OrderBookTbls" EntityType="Marbal.Model.OrderBookTbl" />
+    <EntitySet Name="OrderTransectionTbls" EntityType="Marbal.Model.OrderTransectionTbl" />
+    <EntitySet Name="ProductCategoryTbls" EntityType="Marbal.Model.ProductCategoryTbl" />
+    <EntitySet Name="ProductTbls" EntityType="Marbal.Model.ProductTbl" />
+    <EntitySet Name="RecordTruckTbls" EntityType="Marbal.Model.RecordTruckTbl" />
+    <EntitySet Name="SupplierTbls" EntityType="Marbal.Model.SupplierTbl" />
+    <EntitySet Name="SupplierTransectionTbls" EntityType="Marbal.Model.SupplierTransectionTbl" />
+    <EntitySet Name="SupplierTruckTrans" EntityType="Marbal.Model.SupplierTruckTran" />
+    <EntitySet Name="TruckDetailTbls" EntityType="Marbal.Model.TruckDetailTbl" />
+    <EntitySet Name="vw_CategoriesByProduct" EntityType="Marbal.Model.vw_CategoriesByProduct" />
+    <EntitySet Name="vw_ExpensesTbl" EntityType="Marbal.Model.vw_ExpensesTbl" />
+    <EntitySet Name="vw_ProductTbl" EntityType="Marbal.Model.vw_ProductTbl" />
+    <EntitySet Name="vw_TruckDetailTbl" EntityType="Marbal.Model.vw_TruckDetailTbl" />
+    <AssociationSet Name="FK_SupplierTransectionTbl_AmountTypeTbl" Association="Marbal.Model.FK_SupplierTransectionTbl_AmountTypeTbl">
+      <End Role="AmountTypeTbl" EntitySet="AmountTypeTbls" />
+      <End Role="SupplierTransectionTbl" EntitySet="SupplierTransectionTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryTbl_CategoryTbl" Association="Marbal.Model.FK_ProductCategoryTbl_CategoryTbl">
+      <End Role="CategoryTbl" EntitySet="CategoryTbls" />
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpenseTbl_ExpenseTypeTbl" Association="Marbal.Model.FK_ExpenseTbl_ExpenseTypeTbl">
+      <End Role="ExpenseTypeTbl" EntitySet="ExpenseTypeTbls" />
+      <End Role="ExpenseTbl" EntitySet="ExpenseTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GatePassDetailTbl_GatePassTbl" Association="Marbal.Model.FK_GatePassDetailTbl_GatePassTbl">
+      <End Role="GatePassTbl" EntitySet="GatePassTbls" />
+      <End Role="GatePassDetailTbl" EntitySet="GatePassDetailTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GatePassDetailTbl_OrderBookDetailTbl1" Association="Marbal.Model.FK_GatePassDetailTbl_OrderBookDetailTbl1">
+      <End Role="OrderBookDetailTbl" EntitySet="OrderBookDetailTbls" />
+      <End Role="GatePassDetailTbl" EntitySet="GatePassDetailTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderBookDetailTbl_OrderBookTbl" Association="Marbal.Model.FK_OrderBookDetailTbl_OrderBookTbl">
+      <End Role="OrderBookTbl" EntitySet="OrderBookTbls" />
+      <End Role="OrderBookDetailTbl" EntitySet="OrderBookDetailTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderBookDetailTbl_ProductCategoryTbl" Association="Marbal.Model.FK_OrderBookDetailTbl_ProductCategoryTbl">
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbls" />
+      <End Role="OrderBookDetailTbl" EntitySet="OrderBookDetailTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderTransectionTbl_OrderBookTbl" Association="Marbal.Model.FK_OrderTransectionTbl_OrderBookTbl">
+      <End Role="OrderBookTbl" EntitySet="OrderBookTbls" />
+      <End Role="OrderTransectionTbl" EntitySet="OrderTransectionTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryTbl_ProductTbl" Association="Marbal.Model.FK_ProductCategoryTbl_ProductTbl">
+      <End Role="ProductTbl" EntitySet="ProductTbls" />
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckDetailTbl_ProductCategoryTbl" Association="Marbal.Model.FK_TruckDetailTbl_ProductCategoryTbl">
+      <End Role="ProductCategoryTbl" EntitySet="ProductCategoryTbls" />
+      <End Role="TruckDetailTbl" EntitySet="TruckDetailTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecordTruckTbl_SupplierTbl" Association="Marbal.Model.FK_RecordTruckTbl_SupplierTbl">
+      <End Role="SupplierTbl" EntitySet="SupplierTbls" />
+      <End Role="RecordTruckTbl" EntitySet="RecordTruckTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTruckTrans_RecordTruckTbl" Association="Marbal.Model.FK_SupplierTruckTrans_RecordTruckTbl">
+      <End Role="RecordTruckTbl" EntitySet="RecordTruckTbls" />
+      <End Role="SupplierTruckTran" EntitySet="SupplierTruckTrans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckDetailTbl_RecordTruckTbl" Association="Marbal.Model.FK_TruckDetailTbl_RecordTruckTbl">
+      <End Role="RecordTruckTbl" EntitySet="RecordTruckTbls" />
+      <End Role="TruckDetailTbl" EntitySet="TruckDetailTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTransectionTbl_SupplierTbl" Association="Marbal.Model.FK_SupplierTransectionTbl_SupplierTbl">
+      <End Role="SupplierTbl" EntitySet="SupplierTbls" />
+      <End Role="SupplierTransectionTbl" EntitySet="SupplierTransectionTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierTransectionTbl_SupplierTruckTrans" Association="Marbal.Model.FK_SupplierTransectionTbl_SupplierTruckTrans">
+      <End Role="SupplierTruckTran" EntitySet="SupplierTruckTrans" />
+      <End Role="SupplierTransectionTbl" EntitySet="SupplierTransectionTbls" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AmountTypeTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SupplierTransectionTbls" Relationship="Marbal.Model.FK_SupplierTransectionTbl_AmountTypeTbl" FromRole="AmountTypeTbl" ToRole="SupplierTransectionTbl" />
+  </EntityType>
+  <EntityType Name="CategoryTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductCategoryTbls" Relationship="Marbal.Model.FK_ProductCategoryTbl_CategoryTbl" FromRole="CategoryTbl" ToRole="ProductCategoryTbl" />
+  </EntityType>
+  <EntityType Name="ExpenseTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Expense" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ExpenseTypeTbl" Relationship="Marbal.Model.FK_ExpenseTbl_ExpenseTypeTbl" FromRole="ExpenseTbl" ToRole="ExpenseTypeTbl" />
+  </EntityType>
+  <EntityType Name="ExpenseTypeTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ExpenseTbls" Relationship="Marbal.Model.FK_ExpenseTbl_ExpenseTypeTbl" FromRole="ExpenseTypeTbl" ToRole="ExpenseTbl" />
+  </EntityType>
+  <EntityType Name="GatePassDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Detail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="GatePassTbl" Relationship="Marbal.Model.FK_GatePassDetailTbl_GatePassTbl" FromRole="GatePassDetailTbl" ToRole="GatePassTbl" />
+    <NavigationProperty Name="OrderBookDetailTbl" Relationship="Marbal.Model.FK_GatePassDetailTbl_OrderBookDetailTbl1" FromRole="GatePassDetailTbl" ToRole="OrderBookDetailTbl" />
+  </EntityType>
+  <EntityType Name="GatePassTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="ReciverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReciverNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="GatePassDetailTbls" Relationship="Marbal.Model.FK_GatePassDetailTbl_GatePassTbl" FromRole="GatePassTbl" ToRole="GatePassDetailTbl" />
+  </EntityType>
+  <EntityType Name="OrderBookDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Detail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Length" Type="Int32" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="ItemsCount" Type="Int32" />
+    <Property Name="TotalSize" Type="Int64" />
+    <Property Name="SingleSizePrice" Type="Int32" />
+    <Property Name="ItemTotalPrice" Type="Int32" />
+    <NavigationProperty Name="GatePassDetailTbls" Relationship="Marbal.Model.FK_GatePassDetailTbl_OrderBookDetailTbl1" FromRole="OrderBookDetailTbl" ToRole="GatePassDetailTbl" />
+    <NavigationProperty Name="OrderBookTbl" Relationship="Marbal.Model.FK_OrderBookDetailTbl_OrderBookTbl" FromRole="OrderBookDetailTbl" ToRole="OrderBookTbl" />
+    <NavigationProperty Name="ProductCategoryTbl" Relationship="Marbal.Model.FK_OrderBookDetailTbl_ProductCategoryTbl" FromRole="OrderBookDetailTbl" ToRole="ProductCategoryTbl" />
+  </EntityType>
+  <EntityType Name="OrderBookTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="0" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderBookDetailTbls" Relationship="Marbal.Model.FK_OrderBookDetailTbl_OrderBookTbl" FromRole="OrderBookTbl" ToRole="OrderBookDetailTbl" />
+    <NavigationProperty Name="OrderTransectionTbls" Relationship="Marbal.Model.FK_OrderTransectionTbl_OrderBookTbl" FromRole="OrderBookTbl" ToRole="OrderTransectionTbl" />
+  </EntityType>
+  <EntityType Name="OrderTransectionTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Detail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="TransactionTpeID" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderBookTbl" Relationship="Marbal.Model.FK_OrderTransectionTbl_OrderBookTbl" FromRole="OrderTransectionTbl" ToRole="OrderBookTbl" />
+  </EntityType>
+  <EntityType Name="ProductCategoryTbl">
+    <Key>
+      <PropertyRef Name="ProductCatID" />
+    </Key>
+    <Property Name="ProductCatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="CategoryTbl" Relationship="Marbal.Model.FK_ProductCategoryTbl_CategoryTbl" FromRole="ProductCategoryTbl" ToRole="CategoryTbl" />
+    <NavigationProperty Name="OrderBookDetailTbls" Relationship="Marbal.Model.FK_OrderBookDetailTbl_ProductCategoryTbl" FromRole="ProductCategoryTbl" ToRole="OrderBookDetailTbl" />
+    <NavigationProperty Name="ProductTbl" Relationship="Marbal.Model.FK_ProductCategoryTbl_ProductTbl" FromRole="ProductCategoryTbl" ToRole="ProductTbl" />
+    <NavigationProperty Name="TruckDetailTbls" Relationship="Marbal.Model.FK_TruckDetailTbl_ProductCategoryTbl" FromRole="ProductCategoryTbl" ToRole="TruckDetailTbl" />
+  </EntityType>
+  <EntityType Name="ProductTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductCategoryTbls" Relationship="Marbal.Model.FK_ProductCategoryTbl_ProductTbl" FromRole="ProductTbl" ToRole="ProductCategoryTbl" />
+  </EntityType>
+  <EntityType Name="RecordTruckTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DriverName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DrivrNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TruckNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TruckWeight" Type="Int32" />
+    <Property Name="PerTonRent" Type="Int32" />
+    <Property Name="LabourCost" Type="Int32" />
+    <Property Name="WeightExpense" Type="Int32" />
+    <Property Name="TotalSqFeet" Type="Int32" />
+    <Property Name="InAdvancePament" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="SupplierTbl" Relationship="Marbal.Model.FK_RecordTruckTbl_SupplierTbl" FromRole="RecordTruckTbl" ToRole="SupplierTbl" />
+    <NavigationProperty Name="SupplierTruckTrans" Relationship="Marbal.Model.FK_SupplierTruckTrans_RecordTruckTbl" FromRole="RecordTruckTbl" ToRole="SupplierTruckTran" />
+    <NavigationProperty Name="TruckDetailTbls" Relationship="Marbal.Model.FK_TruckDetailTbl_RecordTruckTbl" FromRole="RecordTruckTbl" ToRole="TruckDetailTbl" />
+  </EntityType>
+  <EntityType Name="SupplierTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RecordTruckTbls" Relationship="Marbal.Model.FK_RecordTruckTbl_SupplierTbl" FromRole="SupplierTbl" ToRole="RecordTruckTbl" />
+    <NavigationProperty Name="SupplierTransectionTbls" Relationship="Marbal.Model.FK_SupplierTransectionTbl_SupplierTbl" FromRole="SupplierTbl" ToRole="SupplierTransectionTbl" />
+  </EntityType>
+  <EntityType Name="SupplierTransectionTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Detail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SubmitAmount" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="AmountTypeTbl" Relationship="Marbal.Model.FK_SupplierTransectionTbl_AmountTypeTbl" FromRole="SupplierTransectionTbl" ToRole="AmountTypeTbl" />
+    <NavigationProperty Name="SupplierTbl" Relationship="Marbal.Model.FK_SupplierTransectionTbl_SupplierTbl" FromRole="SupplierTransectionTbl" ToRole="SupplierTbl" />
+    <NavigationProperty Name="SupplierTruckTran" Relationship="Marbal.Model.FK_SupplierTransectionTbl_SupplierTruckTrans" FromRole="SupplierTransectionTbl" ToRole="SupplierTruckTran" />
+  </EntityType>
+  <EntityType Name="SupplierTruckTran">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RecordTruckTbl" Relationship="Marbal.Model.FK_SupplierTruckTrans_RecordTruckTbl" FromRole="SupplierTruckTran" ToRole="RecordTruckTbl" />
+    <NavigationProperty Name="SupplierTransectionTbl" Relationship="Marbal.Model.FK_SupplierTransectionTbl_SupplierTruckTrans" FromRole="SupplierTruckTran" ToRole="SupplierTransectionTbl" />
+  </EntityType>
+  <EntityType Name="TruckDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Breadth" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="ProductCategoryTbl" Relationship="Marbal.Model.FK_TruckDetailTbl_ProductCategoryTbl" FromRole="TruckDetailTbl" ToRole="ProductCategoryTbl" />
+    <NavigationProperty Name="RecordTruckTbl" Relationship="Marbal.Model.FK_TruckDetailTbl_RecordTruckTbl" FromRole="TruckDetailTbl" ToRole="RecordTruckTbl" />
+  </EntityType>
+  <EntityType Name="vw_CategoriesByProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_ExpensesTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expense" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="vw_ProductTbl">
+    <Key>
+      <PropertyRef Name="ProductCatID" />
+    </Key>
+    <Property Name="ProductCatID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_TruckDetailTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TruckID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TruckID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Breadth" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SupplierTransectionTbl_AmountTypeTbl">
+    <End Type="Marbal.Model.AmountTypeTbl" Role="AmountTypeTbl" Multiplicity="0..1" />
+    <End Type="Marbal.Model.SupplierTransectionTbl" Role="SupplierTransectionTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ProductCategoryTbl_CategoryTbl">
+    <End Type="Marbal.Model.CategoryTbl" Role="CategoryTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.ProductCategoryTbl" Role="ProductCategoryTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ExpenseTbl_ExpenseTypeTbl">
+    <End Type="Marbal.Model.ExpenseTypeTbl" Role="ExpenseTypeTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.ExpenseTbl" Role="ExpenseTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_GatePassDetailTbl_GatePassTbl">
+    <End Type="Marbal.Model.GatePassTbl" Role="GatePassTbl" Multiplicity="0..1" />
+    <End Type="Marbal.Model.GatePassDetailTbl" Role="GatePassDetailTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_GatePassDetailTbl_OrderBookDetailTbl1">
+    <End Type="Marbal.Model.OrderBookDetailTbl" Role="OrderBookDetailTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.GatePassDetailTbl" Role="GatePassDetailTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_OrderBookDetailTbl_OrderBookTbl">
+    <End Type="Marbal.Model.OrderBookTbl" Role="OrderBookTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.OrderBookDetailTbl" Role="OrderBookDetailTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_OrderBookDetailTbl_ProductCategoryTbl">
+    <End Type="Marbal.Model.ProductCategoryTbl" Role="ProductCategoryTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.OrderBookDetailTbl" Role="OrderBookDetailTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_OrderTransectionTbl_OrderBookTbl">
+    <End Type="Marbal.Model.OrderBookTbl" Role="OrderBookTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.OrderTransectionTbl" Role="OrderTransectionTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ProductCategoryTbl_ProductTbl">
+    <End Type="Marbal.Model.ProductTbl" Role="ProductTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.ProductCategoryTbl" Role="ProductCategoryTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TruckDetailTbl_ProductCategoryTbl">
+    <End Type="Marbal.Model.ProductCategoryTbl" Role="ProductCategoryTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.TruckDetailTbl" Role="TruckDetailTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_RecordTruckTbl_SupplierTbl">
+    <End Type="Marbal.Model.SupplierTbl" Role="SupplierTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.RecordTruckTbl" Role="RecordTruckTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_SupplierTruckTrans_RecordTruckTbl">
+    <End Type="Marbal.Model.RecordTruckTbl" Role="RecordTruckTbl" Multiplicity="0..1" />
+    <End Type="Marbal.Model.SupplierTruckTran" Role="SupplierTruckTran" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TruckDetailTbl_RecordTruckTbl">
+    <End Type="Marbal.Model.RecordTruckTbl" Role="RecordTruckTbl" Multiplicity="1" />
+    <End Type="Marbal.Model.TruckDetailTbl" Role="TruckDetailTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_SupplierTransectionTbl_SupplierTbl">
+    <End Type="Marbal.Model.SupplierTbl" Role="SupplierTbl" Multiplicity="0..1" />
+    <End Type="Marbal.Model.SupplierTransectionTbl" Role="SupplierTransectionTbl" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_SupplierTransectionTbl_SupplierTruckTrans">
+    <End Type="Marbal.Model.SupplierTruckTran" Role="SupplierTruckTran" Multiplicity="1" />
+    <End Type="Marbal.Model.SupplierTransectionTbl" Role="SupplierTransectionTbl" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierTruckTran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SupplierTransectionTbl">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

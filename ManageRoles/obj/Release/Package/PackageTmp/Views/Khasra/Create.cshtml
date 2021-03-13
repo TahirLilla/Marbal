@@ -1,0 +1,187 @@
+﻿@model ManageRoles.ViewModels.KhasraViewVM
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/GridTemplates/KhasraViewByKhewatID.js"></script>
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Khasra
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="panel-body">
+
+        <div id="person_aert" class="alert" hidden="hidden" role="alert">
+            <a href="#" class="close" onclick="hideaert()" aria-label="close">&times;</a>
+            <strong>Message!</strong><div id="person_message"></div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Ajax.BeginForm("Create", "Khasra", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @*<div class="row top-margin">
+                    <div class="col-lg-4">
+                        @Html.LabelFor(model => model.MauzaID, htmlAttributes: new { @class = "control-label manadatory" })
+                        @Html.DropDownListFor(model => model.MauzaID, new SelectList(Model.Mauza, "ID", "MauzaName"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MauzaID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            <div class="row top-margin">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-4">
+                    @Html.Label("Mauza Name ")
+                    @Html.DropDownListFor(model => model.MauzaID, new SelectList(Model.Mauzas, "ID", "MauzaName"), new { @class = "form-control", @id = "mauzaID" })
+                    @*@Html.DropDownList("Mauza ", new SelectList(Model.Mauzas, "ID", "MauzaName"), new { @class = "form-control", @id = "mauzaID" })*@
+
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.KhasraInfoVM.KhewatID, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.KhasraInfoVM.KhewatID, new SelectList(Enumerable.Empty<SelectListItem>(), "ID", "Name"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.KhasraInfoVM.KhewatID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+
+                    @Html.LabelFor(model => model.KhasraInfoVM.MarabaNo, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.KhasraInfoVM.MarabaNo, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.KhasraInfoVM.MarabaNo, "", new { @class = "text-danger" })
+                    <br />
+
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.KhasraInfoVM.KhasroNo, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.KhasraInfoVM.KhasroNo, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.KhasraInfoVM.KhasroNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.KhasraInfoVM.AreaKMF, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.KhasraInfoVM.AreaKMF, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.KhasraInfoVM.AreaKMF, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Add Khasra" class="btn btn-success" id="BtnAddKhasra" />
+                    @*@Html.ActionLink("New Person", "NewPerson", "Ownership", null, new { @class = "btn btn-danger", id="BtnSearch" })*@
+                    <input type="button" value="Clear Form" class="btn btn-warning" id="BtnClear" />
+                </div>
+            </div>
+
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Khasras</div>
+        <div class="panel-body">
+            <table id="KhasraViewGrid"></table>
+            <div id="pager_KhasraViewGrid"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    function clearForm() {
+        $("#mauzaID").prop('selectedIndex', 0);
+        $("#KhasraInfoVM_KhewatID").prop("selectedIndex", 0);
+        $("#KhasraInfoVM_MarabaNo").val(null);
+        $("#KhasraInfoVM_KhasroNo").val(null);
+        $("#KhasraInfoVM_AreaKMF").val(null);
+    }
+
+    function OnSuccess(data) {
+        debugger;
+        
+        clearForm();
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-success alert-dismissible");
+        $("#person_aert").show();
+        debugger;
+
+        //$("#exampleModalCenter").modal('hide');
+        alert('HTTP Status Code: ' + data.param1 + "  " + data.param2);
+    }
+    function OnFailure(response) {
+        debugger;
+        data = response.responseJSON;
+
+        $("#person_message").html(data.param2);
+        $("#person_aert").addClass("alert alert-danger alert-dismissible");
+        $("#person_aert").show();
+    }
+    function hideaert() {
+        $("#person_aert").hide();
+    }
+    function khasraGrid() {
+        var khewatId = $("#KhasraInfoVM_KhewatID").val();
+        var mauzaId = $("#mauzaID").val();
+            var tst = {
+                KhewatID: khewatId
+               // MauzaID: mauzaId
+            };
+            Z_BaseClassJQGRID.loadGridWithGridID("KhasraViewGrid", tst);
+        }
+    $(document).ready(function () {
+        $("#BtnClear").click(function () {
+            clearForm();
+            
+        });
+
+        Z_BaseClassJQGRID.bindGridTempate("KhasraViewGrid", Z_COMMON.URL.Khara_Create_Grid, 'Khasra Search', khasraViewTemplate, "local");
+        
+
+
+        $("#mauzaID").change(function () {
+            var dID = $('#mauzaID option:selected').val();
+            $.getJSON("/Khewat/GetKhewatNumbers", { mauzaID: dID },
+                function (data) {
+                    debugger;
+                    var select = $("#KhasraInfoVM_KhewatID");
+                    select.empty();
+                    select.append($('<option/>', {
+                        value: 0,
+                        text: "Select Khewat"
+                    }));
+                    $.each(data.data, function (index, itemData) {
+                        select.append($('<option/>', {
+                            value: itemData.ID,
+                            text: itemData.KhewatNo
+                        }));
+                    });
+                });
+        });
+
+        $("#KhasraInfoVM_KhewatID").change(function () {
+            khasraGrid();
+        });
+    });
+
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>
+<script src="~/Scripts/gridScripts/AreaCalc.js"></script>

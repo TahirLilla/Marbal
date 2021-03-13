@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h2>Admin Dashboard</h2>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Pending Fards</div>
+        <div class="panel-body">
+            <table id="FardTransaction"></table>
+            <div id="pager_FardTransaction"></div>
+        </div>
+
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Pending Fards</div>
+    <div class="panel-body">
+        <table id="regTransaction"></table>
+        <div id="pager_regTransaction"></div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery.redirect.js"></script>
+<script src="~/Scripts/gridScripts/Dashboard.js"></script>
+<link href="~/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script>
+    function showdata(rowid) {
+
+        Z_DashboardGrid.showdata(rowid);
+    }
+    function showRegdata(row_id) {
+        var dataObj = jQuery('#regTransaction').jqGrid('getRowData', row_id);
+
+        $.redirect("/Registery/RegisteryTransaction/", { ID: row_id },  "GET","");
+    }
+    $(function () {
+
+        Z_DashboardGrid.bindGrid('FardTransaction');
+        Z_BaseClassJQGRID.bindGridTempate("regTransaction", "/Registery/GetPendingRegisteries",'heading', tmp,"json");
+    });
+    var tmp =  [
+
+
+        {
+            name: "RegisteryNo",
+            index: "RegisteryNo",
+            //formatter: "date",
+            width: '150'
+
+        },
+        {
+            name: "RegisteryDate",
+            index: "RegisteryDate",
+            formatter: 'date', formatoptions: { srcformat: 'd/m/Y', newformat: 'd/m/Y'},
+            width: '150'
+        },
+        {
+            name: "IntiqalNo",
+            index: "IntiqalNo",
+            width: '150'
+        },
+         {
+            name: "FardID",
+            index: "FardID",
+            width: '150'
+        },
+        {
+            name: "ID",
+            index: "ID",
+            key: true
+            ,
+            formatter: function (cellValue, options, rowObject) {
+
+                return '<button type="button" class="btn btn-link"onClick=showRegdata(' + cellValue + ')  > Selct</button >';
+            }
+        },
+
+    ];
+</script>

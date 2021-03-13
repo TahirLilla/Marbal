@@ -1,0 +1,130 @@
+﻿@model ManageRoles.ViewModels.RegisteryVM
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Search Person</div>
+    <div class="panel-body">
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["ErrorMsg"]
+            </div>
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("Index","Registery"))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="row top-margin">
+        <div class="col-lg-4">
+            @Html.LabelFor(model => model.MauzaID, htmlAttributes: new { @class = "control-label manadatory" })
+            @Html.DropDownListFor(model => model.MauzaID, new SelectList(Model.Mauzas, "ID", "MauzaName"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MauzaID, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-lg-4">
+            @Html.LabelFor(model => model.FardID, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.FardID, new { @class = "form-control", @maxlength = 40 })
+            @Html.ValidationMessageFor(model => model.FardID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+            <div class="row top-margin">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RegisteryNo, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.RegisteryNo, new { @class = "form-control", @maxlength = 40 })
+                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RegisteryDate, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.RegisteryDate,"{0:dd/MM/yyyy}", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RegisteryDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RegisteryType, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.RegisteryType, new SelectList(Model.TypeOfRegistery, "ID", "Name"), new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+
+                    @Html.LabelFor(model => model.IntiqalNo, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.IntiqalNo, new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(model => model.NIC, "", new { @class = "text-danger" })*@
+                    <br />
+
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.IntiqalDate, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.IntiqalDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IntiqalDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Save" class="btn btn-success" id="BtnSave" />
+                    @*@Html.ActionLink("New Person", "NewPerson", "Ownership", null, new { @class = "btn btn-danger", id="BtnSearch" })*@
+                    <input type="button" value="Clear Form" class="btn btn-warning" id="BtnClear" />
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<script src="~/Scripts/gridScripts/RegistryScript.js"></script>
+<script >
+    function clearForm () {
+        $("#MauzaID").prop('selectedIndex', 0);
+            $("#FardID").val(null);
+            $("#RegisteryNo").val(null);
+            $("#RegisteryDate").val(null);
+            $("#RegisteryType").val(null);
+            $("#IntiqalNo").val(null);
+            $("#IntiqalDate").val(null);
+
+    }
+    $(document).ready(function () {
+         $("#BtnClear").click(function () {
+            clearForm();
+            
+        });
+         $("#RegisteryDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        }
+         );
+           $("#IntiqalDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        }
+        );
+   /* {
+            dateFormat: "dd/mm/yy",
+            showStatus: true,
+            showWeeks: true,
+            currentText: 'Now',
+            autoSize: true,
+            gotoCurrent: true,
+            showAnim: 'blind',
+            highlightWeek: true
+        });*/
+    });
+
+</script>

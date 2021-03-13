@@ -1,0 +1,170 @@
+﻿@model ManageRoles.ViewModels.OwnershipAddUpdateVM
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/GridTemplates/OwnerShipDetailByKhewat.js"></script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Update OwnerShip
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="panel-body">
+
+        <div id="ownership_alert" class="alert" hidden="hidden" role="alert">
+            <a href="#" class="close" onclick="hideaert()" aria-label="close">&times;</a>
+            <strong>Message!</strong><div id="ownership_message"></div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Ajax.BeginForm("AddUpdate", "OwnerShip", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.AddAblePerson.ID)
+            @Html.HiddenFor(x => x.OwnerShipID)
+            <div class="row top-margin">
+                <div class="col-lg-12">
+                    <div class="col-lg-4">
+
+                        @Html.LabelFor(model => model.KhewatID, htmlAttributes: new { @class = "control-label " })
+                        @Html.DropDownListFor(model => model.KhewatID, new SelectList(Model.Khewats, "ID", "KhewatNo"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.KhewatID, "*", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        @Html.LabelFor(model => model.PlotID, htmlAttributes: new { @class = "control-label " })
+                        @Html.DropDownListFor(model => model.PlotID, new SelectList(Model.Plots, "ID", "PlotName"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PlotID, "*", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-offset-4">
+                    @Html.DisplayFor(model => model.AddAblePerson.Name, new { @class = "control-label" })
+                    @Html.DisplayFor(model => model.AddAblePerson.LastName, new { @class = "control-label" })
+
+                </div>
+
+            </div>
+
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+
+                    @Html.LabelFor(model => model.AreaInKMF, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.AreaInKMF, new { @class = "form-control", @data_inputmask_regex = @"^[0-9]+-(1[0-9]|[1-9]|0|0[1-9])-([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-6][0-9]|27[0-1])$" })
+                    @Html.ValidationMessageFor(model => model.AreaInKMF, "", new { @class = "text-danger" })
+                    <br />
+
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Add Ownership" class="btn btn-success" id="btnAddOwnerShip" />
+                    @*@Html.ActionLink("New Person", "NewPerson", "Ownership", null, new { @class = "btn btn-danger", id="BtnSearch" })*@
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Pending Fards</div>
+                <div class="panel-body">
+                    <table id="OwnerShipViewGrid"></table>
+                    <div id="pager_OwnerShipViewGrid"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function OnSuccess(data) {
+        $("#ownership_message").html(data.param2);
+        $("#ownership_alert").addClass("alert alert-success alert-dismissible");
+        $("#ownership_alert").show();
+        debugger;
+
+        //$("#exampleModalCenter").modal('hide');
+        alert('HTTP Status Code: ' + data.param1 + "  " + data.param2);
+    }
+    function OnFailure(response) {
+        data = response.responseJSON;
+
+        $("#ownership_message").html(data.param2);
+        $("#ownership_alert").addClass("alert alert-danger alert-dismissible");
+        $("#ownership_alert").show();
+    }
+    function hideaert() {
+        $("#ownership_alert").hide();
+    }
+    $(function () {
+        Z_BaseClassJQGRID.bindGridTempate("OwnerShipViewGrid", Z_COMMON.URL.Owner_Ship_GridView,
+            'OwnerShip Search', tmplateownership, "local");
+        changeKhewatDropdown();
+        onChangePlotDropdown();
+        $("#KhewatID").change(function (e) {
+            debugger;
+            changeKhewatDropdown();
+            // also need to call change event of plot
+            onChangePlotDropdown();
+            var khid = $("#KhewatID option:selected").val();
+            if (khid !== "" && khid > 0) {
+                var tst = {
+                    mauzaID: $("#MauzaID").val(),
+                    khewatID: khid
+                };
+                debugger;
+                Z_BaseClassJQGRID.loadGridWithGridID("OwnerShipViewGrid", tst);
+            }
+
+        });//end of khewat change event
+
+        $('#PlotID').change(function () {
+            debugger;
+            onChangePlotDropdown();
+        });
+    });//end of jquery ready function
+    function changeKhewatDropdown() {
+        var dID = $('#KhewatID option:selected').val();
+        $.getJSON(Z_COMMON.URL.GET_PLOTS_BY_KHEWATS, { khewatID: dID },
+            function (data) {
+                debugger;
+                var select = $("#PlotID");
+                select.empty();
+                select.append($('<option/>', {
+                    value: 0,
+                    text: "Un Ploted Area"
+                }));
+                $.each(data.data, function (index, itemData) {
+                    select.append($('<option/>', {
+                        value: itemData.ID,
+                        text: itemData.PlotName
+                    }));
+                });
+            });
+        }
+
+    function onChangePlotDropdown() {
+        debugger;
+        var plotID = $('#PlotID option:selected').val();
+        var khewatID = $('#KhewatID option:selected').val();
+        $.getJSON(Z_COMMON.URL.GET_OWNERSHIP_FOR_ADD_UPDATE, { personid:@Model.AddAblePerson.ID , plotId: plotID, khewatid: khewatID },
+            function (data) {
+                debugger;
+                if (data.data != 0) {
+                    $("#AreaInKMF").val(data.data.PersonAreaKMF);
+                    $("#OwnerShipID").val(data.data.ID);
+                } else {
+                     $("#AreaInKMF").val("");
+                    $("#OwnerShipID").val(0);
+                }
+            });
+        }
+
+
+  
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>

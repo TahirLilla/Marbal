@@ -1,0 +1,10 @@
+D:\ManageRoles_latest\ManageRoles.Models\bin\Release\ManageRoles.Models.dll.config
+D:\ManageRoles_latest\ManageRoles.Models\bin\Release\ManageRoles.Models.dll
+D:\ManageRoles_latest\ManageRoles.Models\bin\Release\ManageRoles.Models.pdb
+D:\ManageRoles_latest\ManageRoles.Models\bin\Release\System.Web.Mvc.dll
+D:\ManageRoles_latest\ManageRoles.Models\bin\Release\System.Web.Mvc.xml
+D:\ManageRoles_latest\ManageRoles.Models\obj\Release\ManageRoles.Models.csprojAssemblyReference.cache
+D:\ManageRoles_latest\ManageRoles.Models\obj\Release\ManageRoles.Models.csproj.CoreCompileInputs.cache
+D:\ManageRoles_latest\ManageRoles.Models\obj\Release\ManageRoles.Models.csproj.CopyComplete
+D:\ManageRoles_latest\ManageRoles.Models\obj\Release\ManageRoles.Models.dll
+D:\ManageRoles_latest\ManageRoles.Models\obj\Release\ManageRoles.Models.pdb

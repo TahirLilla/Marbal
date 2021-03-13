@@ -1,0 +1,109 @@
+﻿@using ManageRoles.ViewModels;
+@model ManageRoles.ViewModels.KhewatCreateVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Scripts/GridTemplates/KhewatViewByMauzaId.js"></script>
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Create Khewat
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="panel-body">
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["ErrorMsg"]
+            </div>
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("Create", "Khewat"))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row top-margin">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.Khewatvm.MauzaID)
+                    @Html.DropDownListFor(model => model.Khewatvm.MauzaID, new SelectList(Model.Mauzas, "ID", "MauzaName"), new { @class = "form-control", @id = "mauzaID" })
+
+                </div>
+            </div>
+            @Html.HiddenFor(x => x.Khewatvm.ID);
+            <div class="row top-margin">
+
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.Khewatvm.KhewatNo, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.Khewatvm.KhewatNo, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Khewatvm.KhewatNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+
+                    @Html.LabelFor(model => model.Khewatvm.OldKhewatNo, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.Khewatvm.OldKhewatNo, new { @class = "form-control", @maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.Khewatvm.OldKhewatNo, "", new { @class = "text-danger" })
+                    <br />
+
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Add Khewat" class="btn btn-success" id="BtnAddKhasra" />
+
+                </div>
+            </div>
+
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Khewats</div>
+        <div class="panel-body">
+            <table id="KhewatGridView"></table>
+            <div id="pager_KhewatGridView"></div>
+        </div>
+
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+
+        Z_BaseClassJQGRID.bindGridTempate("KhewatGridView", Z_COMMON.URL.Khewat_Create_Grid, 'Khewat Search', khewatViewTemplate, "local");
+        $(function () {
+            debugger;
+            var mauzaId = $("#mauzaID").val();
+            var tst = {
+                MauzaID: mauzaId
+            };
+            debugger;
+            Z_BaseClassJQGRID.loadGridWithGridID("KhewatGridView", tst);
+        });
+
+    });
+
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>
+<script src="~/Scripts/gridScripts/AreaCalc.js"></script>

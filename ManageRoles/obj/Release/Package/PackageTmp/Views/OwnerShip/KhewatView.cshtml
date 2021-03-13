@@ -1,0 +1,225 @@
+﻿
+@{
+    ViewBag.Title = "KhewatView";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Scripts/GridTemplates/KhasraViewByKhewatID.js"></script>
+<script src="~/Scripts/GridTemplates/PlotGridByKhewatId.js"></script>
+@*<script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+    <link href="~/Scripts/JqueryUI/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Scripts/jtable/themes/metro/lightgray/jtable.min.css" rel="stylesheet" />
+    <!--Adding jquery Plugin-->
+
+    <script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+    <!--Adding jTable Plugin-->
+    <script src="~/Scripts/jtable/jquery.jtable.min.js"></script>*@
+
+<ul class="nav nav-tabs" id="khewatViewTab">
+    <li class="nav-item">
+        <a href="#home" class="nav-link " data-toggle="tab">Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="#profile" class="nav-link" data-toggle="tab">Khasra Info</a>
+    </li>
+    <li class="nav-item">
+        <a href="#messages" class="nav-link" data-toggle="tab">Plots Info</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade" id="home">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4" style="padding-top:20px;padding-bottom:10px;">
+                @Html.Label("Mauza Name")
+                @Html.DropDownList("ID", new SelectList(ViewBag.Mauzas, "ID", "MauzaName", 0), "select", new { @class = "form-control", id = "cbomauza" })@*, onchange = "getdata(this.value)" })*@
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Owneship Detail by Khewat</div>
+            <div class="panel-body">
+
+                @Html.Action("KhewatInfo")
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Detail</div>
+            <div class="panel-body">
+
+                <div class="row top-margin">
+                    <div class="col-lg-12">
+                        <div id="DetailView"></div>
+                        <table id="Detailtable"></table>
+                        <div id="DetailViewPager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile">
+        <div class="panel panel-default">
+            <div class="panel-heading">Khasras</div>
+            <div class="panel-body">
+                <table id="KhasraViewGrid"></table>
+                <div id="pager_KhasraViewGrid"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-pane fade " id="messages">
+        <div class="panel panel-default">
+            <div class="panel-heading">Plots</div>
+            <div class="panel-body">
+                <table id="PlotViewGrid"></table>
+                <div id="pager_PlotViewGrid"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#khewatViewTab li:eq(0) a").tab('show');
+        $('#cbomauza').change(function () {
+            if ($("#cbomauza").val() !== "") {
+                var url = "/OwnerShip/GetKhewatNumbers";
+                $.getJSON(url, { mauzaID: $("#cbomauza").val() }, function (data) {
+
+                    if (data) {
+                        $("#khewatNo").empty();
+                        $("#khewatNo").append("<option text='Select' value='-1'>Select</option>");
+                        $.each(data, function (index, optionData) {
+                            $("#khewatNo").append("<option text='" + optionData.KhewatNo + "' value='" + optionData.ID + "'>" + optionData.KhewatNo + "</option>");
+                        });
+                    }
+                });
+            }
+        });
+        debugger;
+        var khewatId;
+
+        $('#khewatNo').change(function () {
+            if ($("#khewatNo").val() !== "" && $("#khewatNo").val() > 0) {
+                khewatId = $("#khewatNo").val();
+                khasraGrid();
+                plotGrid();
+                var url = "/OwnerShip/GetKhewatInfo";
+                $.getJSON(url, { mauzaID: $("#cbomauza").val(), khewatID: $("#khewatNo").val() }, function (data) {
+                    debugger;
+                    if (data) {
+
+                        $("#totalOwners").text(data.TotalOwners);
+                        $("#thissas").text("NOT SET YET");
+                        $("#tkhasra").text(data.TotalKhasras);
+                        $("#tohissas").text(data.TotalOwnerShipAreaKMF);
+                        $("#tplots").text();
+                    }
+                });
+                // $('#DetailView').jtable('load', { mauzaID: $("#cbomauza").val(), khewatID: $("#khewatNo").val() });
+                $("#Detailtable").setGridParam({ datatype: 'json', postData: { mauzaID: $("#cbomauza").val(), khewatID: $("#khewatNo").val() } }).trigger('reloadGrid', [{ page: 1 }]);
+            }
+        });
+        function khasraGrid() {
+            Z_BaseClassJQGRID.bindGridTempate("KhasraViewGrid", Z_COMMON.URL.Khara_Create_Grid, 'Khasra Search', khasraViewTemplate, "local");
+            var tst = {
+                KhewatID: khewatId
+            };
+            Z_BaseClassJQGRID.loadGridWithGridID("KhasraViewGrid", tst);
+        }
+
+        function plotGrid() {
+            plotViewTemplate.pop();
+            Z_BaseClassJQGRID.bindGridTempate("PlotViewGrid", Z_COMMON.URL.Plot_Grid_By_KhewatId, 'Plot Search', plotViewTemplate, "local");
+            debugger;
+            var tst = {
+                KhewatID: khewatId
+            }
+            Z_BaseClassJQGRID.loadGridWithGridID("PlotViewGrid", tst);
+
+
+
+        }
+
+
+        $('#Detailtable').jqGrid({
+            url: '/Ownership/GetKhewatDetailJQ',
+            datatype: 'local',
+            // datatype: "jsonp",
+            mtype: "GET",
+            height: 100,
+            autowidth: true,
+            shrinkToFit: false,
+            guiStyle: "bootstrap",
+            emptyrecords: 'No records to display',
+            //styleUI: "Bootstrap",
+            colModel: [
+                { name: "ID", index: "ID", hidden: true, editable: true },
+                {
+                    name: "MauzaName",
+                    index: "MauzaName",
+
+                },
+                {
+                    name: "Name",
+                    index: "Name",
+
+                },
+                {
+                    name: "LastName",
+                    index: "LastName",
+
+                },
+                {
+                    name: "NIC",
+                    index: "NIC",
+
+                },
+                {
+                    name: "OwnerShiptype",
+                    index: "OwnerShiptype"
+                },
+                //{
+                //    name: "KhewatNo",
+                //    index: "KhewatNo",
+
+                //},
+                {
+                    index: "Area(K-M-F)",
+                    name: "PersonAreaKMF",
+
+                },
+                {
+                    index: "PlotName",
+                    name: "PlotName"
+                },
+                {
+                    index: "PlotTypeName",
+                    name: "PlotTypeName"
+                }
+
+            ],
+            pager: jQuery('#DetailViewPager'),
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '100%',
+            viewrecords: true,
+            caption: 'Owner Ship Detail',
+            jsonReader:
+            {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                Id: "0"
+            }
+        }).navGrid("#DetailViewPager", { edit: false, add: false, del: false, search: false, refresh: false });
+
+     
+
+    });//jquery end here.
+
+
+
+
+</script>

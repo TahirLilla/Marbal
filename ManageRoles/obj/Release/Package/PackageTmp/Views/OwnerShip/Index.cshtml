@@ -1,0 +1,105 @@
+﻿@using ManageRoles.ViewModels
+@model ManageRoles.ViewModels.PersonSearchVM
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "This is the title of view";
+}
+
+
+
+@Html.Action("PersonSearch", "Person")
+<div class="row">
+    <div class="col-lg-12"></div>
+</div>
+<div class="row">
+    @Html.Action("PersonGrid", "Person", new GridVM { ID = "UserTableContainer", URL = ViewBag.URL })
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myLargeModalLabel">Person History</h4>
+
+            </div>
+            <div class="modal-body">                
+                @Html.Action("OwnershipGrid")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        //Re-load records when user click 'load records' button.
+        $('#BtnSearch').click(function (e) {
+            e.preventDefault();
+
+            var tst = {
+                RelationID: $("#RelationID").val(),
+                MauzaID: $("#MauzaID").val(),
+                Name: $('#Name').val(),
+                LastName: $('#LastName').val(),
+                NIC: $('#NIC').val()
+            };
+            Z_GRID.loadGrid(tst);
+            //$('#UserTableContainer').jtable('load', {
+            //    data: tst
+            //});
+
+        });
+
+        //Load Customer data from server
+        // $('#UserTableContainer').jtable('load');
+
+        ////dialog code.
+        //$("#DetailViewDiv").dialog({
+        //    autoOpen: false,
+        //    modal: true,
+        //    title: "View Details"
+        //});
+
+    });//jquery end here.
+    function showdata(ID) {
+        //$('#DetailViewDiv').dialog('open');
+        $('.bd-example-modal-lg').modal('show');
+        var tst = {
+                personID: ID,
+                mauzaID: $("#MauzaID").val()
+            };
+            Z_BaseClassJQGRID.loadGridWithGridID("DetailViewGrid", tst);
+
+        //$('#DetailView').jtable('load', {
+        //    personID: ID,
+        //    mauzaID: $("#MauzaID").val()
+        //});
+    }
+
+
+
+                                //$("#btn-link").click(function () {
+                                //    debugger;
+                                //    var customerId = ID;
+                                //    $.ajax({
+                                //        type: "POST",
+                                //        url: "/OwnerShip/Details",
+                                //        data: '{customerId: "' + customerId + '" }',
+                                //        contentType: "application/json; charset=utf-8",
+                                //        dataType: "html",
+                                //        success: function (response) {
+                                //            $('#dialog').html(response);
+                                //            $('#dialog').dialog('open');
+                                //        },
+                                //        failure: function (response) {
+                                //            alert(response.responseText);
+                                //        },
+                                //        error: function (response) {
+                                //            alert(response.responseText);
+
+                                //        });
+                                //});
+</script>
+

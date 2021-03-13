@@ -1,0 +1,87 @@
+﻿@model ManageRoles.ViewModels.PersonSearchVM
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Search Person</div>
+    <div class="panel-body">
+        @if (TempData["MessageCreateUsers"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["MessageCreateUsers"]
+            </div>
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row top-margin">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.MauzaID, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(model => model.MauzaID, new SelectList(Model.Mauza, "ID", "MauzaName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MauzaID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @maxlength = 40 })
+                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RelationID, htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.RelationID, new SelectList(Model.relations, "ID", "Name"), new { @class = "form-control" })
+
+                    @*@Html.ValidationMessageFor(model => model.RelationID, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @maxlength = 50 })
+                    @*@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="row top-margin">
+                <div class="clearfix"></div>
+                <div class="col-lg-4">
+
+                    @Html.LabelFor(model => model.NIC, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBoxFor(model => model.NIC, new { @class = "form-control", @data_inputmask_regex = @"^[0-9]{5}-[0-9]{7}-[0-9]$" })
+                    @*@Html.ValidationMessageFor(model => model.NIC, "", new { @class = "text-danger" })*@
+                    <br />
+
+                </div>
+                <div class="col-lg-4">
+                    @*@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", data_inputmask = "'mask': '0999-9999999'" })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Search Person" class="btn btn-success" id="BtnSearch" />
+                    @*@Html.ActionLink("New Person", "NewPerson", "Ownership", null, new { @class = "btn btn-danger", id="BtnSearch" })*@
+                    <button type="button" class="btn btn-success" id="btnAddNew" data-toggle="modal" data-target="#exampleModalCenter">
+                        add new
+                    </button>
+                    <input type="button" value="Clear Form" class="btn btn-warning" id="BtnClear" />
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+@Html.Action("Person", "Person");

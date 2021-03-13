@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae63947d9f3d47cca97ac11a395b9eb3" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="Marbal.Model.AmountTypeTbl" Width="1.5" PointX="5.25" PointY="12.25" />
+        <EntityTypeShape EntityType="Marbal.Model.CategoryTbl" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="Marbal.Model.ExpenseTbl" Width="1.5" PointX="12" PointY="8.625" />
+        <EntityTypeShape EntityType="Marbal.Model.ExpenseTypeTbl" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Marbal.Model.GatePassDetailTbl" Width="1.5" PointX="10.5" PointY="5" />
+        <EntityTypeShape EntityType="Marbal.Model.GatePassTbl" Width="1.5" PointX="8.25" PointY="1" />
+        <EntityTypeShape EntityType="Marbal.Model.OrderBookDetailTbl" Width="1.5" PointX="8.25" PointY="4.5" />
+        <EntityTypeShape EntityType="Marbal.Model.OrderBookTbl" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="Marbal.Model.OrderTransectionTbl" Width="1.5" PointX="8.25" PointY="13" />
+        <EntityTypeShape EntityType="Marbal.Model.ProductCategoryTbl" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="Marbal.Model.ProductTbl" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="Marbal.Model.RecordTruckTbl" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="Marbal.Model.SupplierTbl" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="Marbal.Model.SupplierTransectionTbl" Width="1.5" PointX="7.5" PointY="8.875" />
+        <EntityTypeShape EntityType="Marbal.Model.SupplierTruckTran" Width="1.5" PointX="5.25" PointY="9.25" />
+        <EntityTypeShape EntityType="Marbal.Model.TruckDetailTbl" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="Marbal.Model.vw_CategoriesByProduct" Width="1.5" PointX="10.75" PointY="2.5" />
+        <EntityTypeShape EntityType="Marbal.Model.vw_ExpensesTbl" Width="1.5" PointX="10.75" PointY="11.5" />
+        <EntityTypeShape EntityType="Marbal.Model.vw_ProductTbl" Width="1.5" PointX="0.75" PointY="13.5" />
+        <EntityTypeShape EntityType="Marbal.Model.vw_TruckDetailTbl" Width="1.5" PointX="12.75" PointY="2.5" />
+        <AssociationConnector Association="Marbal.Model.FK_SupplierTransectionTbl_AmountTypeTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_ProductCategoryTbl_CategoryTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_ExpenseTbl_ExpenseTypeTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_GatePassDetailTbl_GatePassTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_GatePassDetailTbl_OrderBookDetailTbl1" />
+        <AssociationConnector Association="Marbal.Model.FK_OrderBookDetailTbl_OrderBookTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_OrderBookDetailTbl_ProductCategoryTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_OrderTransectionTbl_OrderBookTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_ProductCategoryTbl_ProductTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_TruckDetailTbl_ProductCategoryTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_RecordTruckTbl_SupplierTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_SupplierTruckTrans_RecordTruckTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_TruckDetailTbl_RecordTruckTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_SupplierTransectionTbl_SupplierTbl" />
+        <AssociationConnector Association="Marbal.Model.FK_SupplierTransectionTbl_SupplierTruckTrans" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

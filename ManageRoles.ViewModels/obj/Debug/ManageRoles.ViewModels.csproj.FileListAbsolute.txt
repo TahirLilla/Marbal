@@ -1,0 +1,61 @@
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\ManageRoles.ViewModels.dll
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\ManageRoles.ViewModels.pdb
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.dll
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\SRMIS.MODEL.dll
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\EntityFramework.dll
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.pdb
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.dll.config
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\SRMIS.MODEL.pdb
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\SRMIS.MODEL.dll.config
+D:\managerole reposirory\ManageRoles.ViewModels\bin\Debug\EntityFramework.xml
+D:\managerole reposirory\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csprojAssemblyReference.cache
+D:\managerole reposirory\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csproj.CoreCompileInputs.cache
+D:\managerole reposirory\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csproj.CopyComplete
+D:\managerole reposirory\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.dll
+D:\managerole reposirory\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\ManageRoles.ViewModels.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\ManageRoles.ViewModels.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\SRMIS.MODEL.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.Shared.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportSource.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\EntityFramework.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\stdole.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.dll.config
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\SRMIS.MODEL.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\SRMIS.MODEL.dll.config
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Debug\EntityFramework.xml
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csprojAssemblyReference.cache
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csproj.CoreCompileInputs.cache
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csproj.CopyComplete
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.pdb
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\ManageRoles.ViewModels.dll
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\ManageRoles.ViewModels.pdb
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.dll
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\Marbal.Model.dll
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\EntityFramework.dll
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.pdb
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\ManageRoles.Models.dll.config
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\Marbal.Model.pdb
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\Marbal.Model.dll.config
+D:\Marbal\ManageRoles.ViewModels\bin\Debug\EntityFramework.xml
+D:\Marbal\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csprojAssemblyReference.cache
+D:\Marbal\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csproj.CoreCompileInputs.cache
+D:\Marbal\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.csproj.CopyComplete
+D:\Marbal\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.dll
+D:\Marbal\ManageRoles.ViewModels\obj\Debug\ManageRoles.ViewModels.pdb

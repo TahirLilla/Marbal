@@ -1,0 +1,96 @@
+﻿@model ManageRoles.ViewModels.FardTransactonVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/bindings/inputmask.binding.js"></script>
+<script src="~/Scripts/GridTemplates/FardViewByMauza.js"></script>
+<h2>Transaction</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">Fard Transaction </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("InsertTransaction", "Fard"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row ">
+                <div class="col-lg-4">
+                    @Html.Label("Mauza Name")
+                    @Html.DropDownListFor(x => x.MauzaID, new SelectList(ViewBag.Mauzas, "ID", "MauzaName", 0), "select", new { @class = "form-control", id = "cbomauza" })
+                    @Html.ValueFor(x => x.MauzaID)
+                </div>
+
+            </div>
+            <div class="row top-margin">
+                <div class="col-lg-4">
+                    @Html.LabelFor(x => x.FardID, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.FardID, new { @class = "form-control" })
+                    @Html.ValueFor(x => x.FardID)
+
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(x => x.IssuedPersonName, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.IssuedPersonName, new { @class = "form-control" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(x => x.FardDate, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.FardDate, new { @class = "form-control", @data_provide = "datepicker" })
+                    @Html.ValueFor(x => x.FardDate)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 top-margin">
+                    <input type="submit" value="Proceed" class="btn btn-success" id="BtnSearch" />
+                    <input type="button" value="Clear Form" class="btn btn-warning" id="BtnClear" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Fards</div>
+        <div class="panel-body">
+            <table id="FardViewGrid"></table>
+            <div id="pager_FardViewGrid"></div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function clearForm () {
+        $("#cbomauza").prop('selectedIndex', 0);
+            $("#FardID").val(null);
+            $("#IssuedPersonName").val(null);
+            $("#FardDate").val(null);
+
+    }
+    $(function () {
+        $("#BtnClear").click(function () {
+            clearForm();
+            
+        });
+        debugger;
+        Z_BaseClassJQGRID.bindGridTempate("FardViewGrid", Z_COMMON.URL.Fard_Grid_View, 'Fard Search', templateFardView, "local");
+        $("#cbomauza").change(function (e) {
+            debugger;
+            var dId = $("#cbomauza option:selected").val();
+            var tst = {
+                MauzaID: dId
+            }
+            Z_BaseClassJQGRID.loadGridWithGridID("FardViewGrid", tst);
+
+
+        });
+    });
+    $(function () {
+        $("#FardDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+       
+    });
+
+</script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/gridScripts/Z_BaseClassJQGRID.js"></script>
+<script src="~/Scripts/gridScripts/AreaCalc.js"></script>

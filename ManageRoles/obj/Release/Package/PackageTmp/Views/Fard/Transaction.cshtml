@@ -1,0 +1,261 @@
+﻿@using ManageRoles.ViewModels
+@model FardTransactonVM
+@{
+    ViewBag.Title = "Fard Transaction";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Transaction</h2>
+@Html.HiddenFor(x => x.ID)
+@Html.HiddenFor(x => x.FardID)
+@Html.HiddenFor(x => x.UserID)
+@Html.HiddenFor(x => x.Type)
+@Html.HiddenFor(x => x.Date)
+<ul class="nav nav-tabs" id="khewatViewTab">
+    <li class="nav-item">
+        <a href="#home" class="nav-link " data-toggle="tab">تلاش شخص</a>
+    </li>
+    <li class="nav-item">
+        <a href="#KhewatView" class="nav-link" data-toggle="tab">اندراج فرد</a>
+    </li>
+    <li class="nav-item">
+        <a href="#messages" class="nav-link" data-toggle="tab">تفصیل</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade" id="home">
+        <div class="row">
+
+            @Html.Action("Personsearch", "Person")
+        </div>
+        <div class="row top-margin">
+            <div class="panel panel-default">
+                <div class="panel-heading">Search Person</div>
+                <div class="panel-body">
+
+                    @Html.Action("PersonGrid", "Person", new GridVM { ID = "UserTableContainer", URL = ViewBag.URL })
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row top-margin">
+            <div class="panel panel-default">
+                <div class="panel-heading">Selected Person</div>
+                <div class="panel-body">
+                    @Html.HiddenFor(x => x.PIDs);
+                    <div id="selectedUserGrid"></div>
+                    <div id="pager_selectedUserGrid"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="KhewatView">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Owneship Detail by Khewat</div>
+            <div class="panel-body">
+
+                @Html.Action("KhewatInfo", "OwnerShip")
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Detail</div>
+            <div class="panel-body">
+
+                <div class="row top-margin">
+                    <div class="col-lg-12">
+                        <table id="DetailView"></table>
+                        <div id="pager_DetailView"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="messages">
+
+        <div class="row top-margin">
+            <div class="col-lg-4">
+                @Html.Label("Mauza Name")
+                @Html.TextBoxFor(x => x.MauzaName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-lg-4">
+                @Html.Label("Fard ID ");
+                @Html.TextBoxFor(x => x.FardID, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-lg-4">
+                @Html.LabelFor(x => x.IssuedPersonName)
+                @Html.TextBoxFor(x => x.IssuedPersonName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="row top-margin">
+            <div class="col-lg-4">
+                @Html.Label("Fard Issuance Date")
+                @Html.TextBoxFor(x => x.FardDate, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-lg-4">
+                @Html.Label("Total Area Selected In FARD")
+                @Html.Label("NILL", new { @class = "form-control", id = "totalFardArea" })
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Detail Fard</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="FardSelectedView"></table>
+                            <div id="pager_FardSelectedView"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-4">
+                <input type="button" class="btn btn-success" value="CompleteTask" id="btnCompleteTask" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/gridScripts/Fard.js"></script>
+<script src="~/Scripts/gridScripts/AreaCalc.js"></script>
+<script src="~/Scripts/gridScripts/common_script.js"></script>
+<script src="~/Scripts/jquery.redirect.js"></script>
+
+
+<script>
+        function ErrorMessage() {
+            $("#dataalert").show();
+                }
+
+                function showMEWhat(data) {
+                    debugger;
+                    alert('testing');
+                }
+
+
+
+        //used it for selecteion of data.
+        function showdata(id) {
+
+             //$.postJSON('"/Fard/InsertPerson";', { PersonID: id }, function () {
+
+            //   });
+            debugger;
+            $("#dataalert").hide();
+            var pidelements = Z_Fard.InsertSelectedUsersIDs(id);
+             $("#selectedUserGrid").jtable('load');
+
+        }//end of function showdata
+
+    $(document).ready(function () {
+        $("#btnAddNew").hide();
+        Z_Fard.SelectedPersonGridJTable("selectedUserGrid");
+        Z_Fard_OwnerShip.OwnerShipDetailGrid("DetailView");
+        $("#MauzaID").val("@Model.MauzaID");
+        $("#MauzaID").prop("disabled", true);
+        $("#khewatViewTab li:eq(0) a").tab('show');
+        if ($("#PIDs").val().length > 0) {
+            $("#selectedUserGrid").jtable('load');
+        }
+        //Re-load records when user click 'load records' button.
+        $('#BtnSearch').click(function (e) {
+            e.preventDefault();
+
+            var tst = {
+                RelationID: $("#RelationID").val(),
+                MauzaID: $("#MauzaID").val(),
+                Name: $('#Name').val(),
+                LastName: $('#LastName').val(),
+                NIC: $('#NIC').val()
+            };
+            Z_GRID.loadGrid(tst);
+
+
+        });//end of btnsearch click event
+
+        $('#khewatViewTab li:eq(1) a').on('click', function (e) {
+
+            // e.preventDefault();
+            $(this).tab('show');
+            var url = "/Fard/GetKhewatNumbers";
+            $.post(url, { IDs: JSON.parse($("#PIDs").val()), MauzaID: $("#MauzaID").val() }, function (data) {
+
+                Z_COMMON.BindSelectBox(data.data);
+            }, 'json');
+
+        });
+        //third tab click
+        $('#khewatViewTab li:eq(2) a').on('click', function (e) {
+            debugger;
+            // e.preventDefault();
+            $(this).tab('show');
+             Z_Fard_OwnerShip_View.OwnerShipDetailViewGrid("FardSelectedView");
+              Z_Fard_OwnerShip_View.loadGrid({FardID:$("#FardID").val()})
+            $.getJSON('/Fard/GetTotalFardArea', {FardID:$("#FardID").val()})
+                .done(function (json) {
+                    debugger;
+                    var data_ids= Z_Fard_OwnerShip_View.grd.jqGrid('getDataIDs');
+                    if (data_ids.length > 0) {
+                        var feet_per_marla = Z_Fard_OwnerShip_View.grd.jqGrid('getRowData', 1)["feet_per_marla"];
+
+                        $("#totalFardArea").text(AreaCalc.getAreaInKMF(json.record, feet_per_marla));
+                    }//end of if condition
+                })
+                 .fail(function( jqxhr, textStatus, error ) {
+                              var err = textStatus + ", " + error;
+                              console.log( "Request Failed: " + err );
+                });
+             
+
+        });
+
+
+
+        $('#khewatNo').change(function () {
+            if ($("#khewatNo").val() !== "" && $("#khewatNo").val() > 0) {
+                var url = "/OwnerShip/GetKhewatInfo";
+                $.getJSON(url, { mauzaID: $("#MauzaID").val(), khewatID: $("#khewatNo").val() }, function (data) {
+                    debugger;
+                    if (data) {
+
+                        $("#totalOwners").text(data.TotalOwners);
+                        $("#thissas").text("NOT SET YET");
+                        $("#tkhasra").text(data.TotalKhasras);
+                        $("#tohissas").text(data.TotalOwnerShipAreaKMF);
+                        $("#tplots").text();
+                    }
+                });
+                var postdataparam = {
+                    IDs: function () { return Z_Fard.GetPIDs() },
+                    KhewatID: function () { return $("#khewatNo").val() },
+                     FardID: function () { return  $("#FardID").val() }
+                };
+                Z_Fard_OwnerShip.loadGrid(postdataparam);
+               // $('#DetailView').jtable('load', { IDs: JSON.parse($("#PIDs").val()), KhewatID: $("#khewatNo").val() });
+
+            }
+        });
+
+        $("#btnCompleteTask").click(function () {
+              $.getJSON('/Fard/CompleteTransaction', {FardID:$("#FardID").val()})
+                .done(function (json) {
+                    $.redirect("/AdminDashboard/Dashboard", {}, "POST", "");
+                })
+              
+        });
+
+        });//jquery end here.
+
+</script>
+
+
+
+
+

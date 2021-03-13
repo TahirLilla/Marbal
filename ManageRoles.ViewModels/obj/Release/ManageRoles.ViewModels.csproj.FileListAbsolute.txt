@@ -1,0 +1,15 @@
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\ManageRoles.ViewModels.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\ManageRoles.ViewModels.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\ManageRoles.Models.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\SRMIS.MODEL.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\EntityFramework.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\ManageRoles.Models.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\ManageRoles.Models.dll.config
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\SRMIS.MODEL.pdb
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\SRMIS.MODEL.dll.config
+D:\ManageRoles_latest\ManageRoles.ViewModels\bin\Release\EntityFramework.xml
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Release\ManageRoles.ViewModels.csprojAssemblyReference.cache
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Release\ManageRoles.ViewModels.csproj.CoreCompileInputs.cache
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Release\ManageRoles.ViewModels.csproj.CopyComplete
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Release\ManageRoles.ViewModels.dll
+D:\ManageRoles_latest\ManageRoles.ViewModels\obj\Release\ManageRoles.ViewModels.pdb
